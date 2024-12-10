@@ -1,50 +1,27 @@
-# React + TypeScript + Vite
+# blob-react
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+`blob-react` 是一个基于 **React** 的网页端项目，旨在提供 **blob** 服务。此项目重构自早期版本，旨在提升性能、用户体验和代码可维护性。
 
-Currently, two official plugins are available:
+如果你需要查看重构前的版本，请移步 [blob](#) 项目。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 相关项目
 
-## Expanding the ESLint configuration
+- **移动端版本**：基于 **Android** 的移动端版本请移步 [blob-app](#)。
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 项目功能
 
-- Configure the top-level `parserOptions` property like this:
+此项目主要提供以下功能：
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- 用户注册、登录
+- up主关注、粉丝
+- 文章发布、推荐、浏览、点赞、收藏、评论
+- 群组创建、加入、聊天
+- 图片上传、预览与处理
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 技术栈
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- **前端**：React, TypeScript, Vite
+- **状态管理**：React 状态 (useState)
+- **路由管理**：React Router
+- **样式**：CSS, SASS, SCSS
+- **其他**：Axios

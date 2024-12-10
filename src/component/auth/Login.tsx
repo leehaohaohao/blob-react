@@ -20,7 +20,7 @@ const Login = ({setLogging}:LoggingProps) => {
         formData.append("password",password);
         const res = await loginApi(formData);
         const token = res.data.data;
-        console.log(token)
+        console.log(token);
         localStorage.setItem("token",token);
         //TODO 跳转页面
     }
