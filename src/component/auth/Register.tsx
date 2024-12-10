@@ -4,11 +4,11 @@ import {LoggingProps} from "./props.ts";
 
 const Register = ({setLogging}:LoggingProps)=>{
     return(
-        <form id={"form"}>
+        <form className={"form"}>
             <h1>注册</h1>
             <input type={"text"} placeholder={"用户名"} name={"username"} />
             <input type={"password"} placeholder={"密码"} name={"password"} />
-            <div id={'code'}>
+            <div className={'code'}>
                 <input type={"text"} placeholder={"验证码"} name={"code"} />
                 <button>发送验证码</button>
             </div>
