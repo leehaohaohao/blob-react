@@ -1,0 +1,16 @@
+.animation-container{
+
+}
+.text{
+    transition: opacity 0.2s ease, transform 0.3s ease;
+}
+.icon{
+    transition: transform 0.3s ease;
+}
+.animation-container:hover .text{
+    opacity: 0;
+    transform: translateX(-100%);
+}
+.animation-container:hover .icon {
+    transform: translateX(-60%);
+}

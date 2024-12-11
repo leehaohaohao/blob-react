@@ -6,6 +6,10 @@
 import axiosInstance from "../axios.ts";
 
 
-export const loginApi = (data:FormData)=>{
-    return axiosInstance.post('/login',data)
+export const loginApi = async (email: string, password: string)=>{
+    const formData = new FormData();
+    formData.append('email',email);
+    formData.append('password',password);
+    const res = await axiosInstance.post('/login',formData)
+    return res.data;
 }

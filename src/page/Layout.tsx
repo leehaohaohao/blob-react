@@ -1,8 +1,8 @@
-import coverImage from '../../assets/cover.png'
+import coverImage from '../assets/cover.png'
 import './layout.css'
-import Register from "./Register.tsx";
+import Register from "../component/auth/Register.tsx";
 import {useState} from "react";
-import Login from "./Login.tsx";
+import Login from "../component/auth/Login.tsx";
 
 const Layout = () =>{
     const [logging,setLogging] = useState(true);

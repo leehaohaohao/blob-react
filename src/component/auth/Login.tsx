@@ -9,20 +9,20 @@ import {LoggingProps} from "./props.ts";
 import {useState} from "react";
 import {loginApi} from "../../api/auth/auth.ts";
 import * as React from "react";
+import {useNavigate} from "react-router-dom";
 const Login = ({setLogging}:LoggingProps) => {
     const[email,setEmail] = useState('');
     const[password,setPassword] = useState('');
+    const navigate = useNavigate();
     //登陆请求
     const handleSubmit = async (e: React.FormEvent)=>{
         e.preventDefault();
-        const formData = new FormData();
-        formData.append("email",email);
-        formData.append("password",password);
-        const res = await loginApi(formData);
-        const token = res.data.data;
+        const data = await loginApi(email,password);
+        const token = data.data;
         console.log(token);
         localStorage.setItem("token",token);
         //TODO 跳转页面
+        navigate("/home")
     }
     return (
         <form className={"form"} onSubmit={handleSubmit}>
