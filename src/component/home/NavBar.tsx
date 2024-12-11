@@ -11,6 +11,7 @@ import article from '../../assets/icon/article.png'
 import chatroom from '../../assets/icon/chatroom.png'
 import search from '../../assets/icon/search.png'
 import publish from '../../assets/icon/publish.png'
+import avatar from '../../assets/default/avatar.png'
 const NavBar = () => {
     return (
         <div className={'nav-bar'}>
@@ -46,7 +47,42 @@ const NavBar = () => {
                 </div>
             </div>
             <div className={'info'}>
-
+                <div className={'info-container'}>
+                    <img src={avatar} className={'avatar'} alt={'头像'}/>
+                    <div className={'dropdown-menu'}>
+                        <ul>
+                            <div className={'userinfo'}>
+                                <div className={'name'}>
+                                    <div className={'name-text'}>
+                                        <span>姓名:</span>
+                                    </div>
+                                    <div className={'name-value'}>
+                                        <span>李昊</span>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div className={'id'}>
+                                    <div className={'id-text'}>
+                                        <span>UID:</span>
+                                    </div>
+                                    <div className={'id-value'}>
+                                        <span>123456789</span>
+                                    </div>
+                                </div>
+                                <hr/>
+                            </div>
+                            <li>
+                                <a>我的喜欢</a>
+                            </li>
+                            <li>
+                                <a>我的关注</a>
+                            </li>
+                            <li>
+                                <a>我的文章</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     )
