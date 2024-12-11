@@ -1,0 +1,117 @@
+.front-container{
+    width: 100vw;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.left{
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+.right{
+    flex: 1;
+}
+.left-box{
+    display: flex;
+    width: 100%;
+    height: 25vh;
+    border-radius: 25px;
+    box-shadow: #dddddd 5px 5px 5px;
+    background: linear-gradient(to right, #f8f9fa, #e0f2fe);
+}
+.right-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    height: 77vh;
+    width: 100%;
+    box-shadow: #dddddd 5px 5px 5px;
+    background: linear-gradient(to right, #f8f9fa, #e0f2fe);
+}
+.custom-tags{
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tag-button{
+    flex:1;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border-left: #9c8585 1px solid;
+}
+
+.tag-button-content{
+    width: 60%;
+    height: 5vh;
+    border: none;
+    border-radius: 25px;
+    background-color: #ace0f9;
+    transition: background 1s ease, transform 0.5s ease;
+    font-size: 18px;
+}
+.tag-button-content:hover{
+    background-color: #bbdefb;
+    transform: scale(1.1);
+}
+.tag-list{
+    flex: 2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-evenly;
+}
+.tag-box{
+    border-radius: 25px;
+    background-color: #ace0f9;
+    padding: 10px;
+    text-align: center;
+}
+.feature-square{
+    flex:3;
+}
+.tag-form-info{
+    font-size: 18px;
+}
+.tag-form{
+    position: absolute;
+    display: flex;
+    top:25%;
+    left:50%;
+    width: 20vw;
+    height: 40vh;
+    background: #fafafa;
+    box-shadow: #9c8585 3px 3px 3px;
+    border-radius: 25px;
+    flex-direction: column;
+    align-items: center;
+    z-index: 11;
+    transform: translateX(-50%) scale(0.9); /* 初始状态缩小并稍微偏左 */
+}
+.tag-form-box{
+    margin-top: 10px;
+    text-align: center;
+    width: 50%;
+    padding: 5px;
+    font-size: 18px;
+    background: #ace0f9;
+    border-radius: 25px;
+}
+.tag-form-content{
+    display: flex;
+}
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}

@@ -27,9 +27,9 @@ const Login = ({setLogging}:LoggingProps) => {
     return (
         <form className={"form"} onSubmit={handleSubmit}>
             <h1>登录</h1>
-            <input type={"text"} placeholder={"邮箱"} value={email} onChange={(e)=>setEmail(e.target.value)}/>
-            <input type={"password"} placeholder={"密码"} value={password} onChange={(e)=>setPassword(e.target.value)}/>
-            <button>登录</button>
+            <input className={'log-input'} type={"text"} placeholder={"邮箱"} value={email} onChange={(e)=>setEmail(e.target.value)}/>
+            <input className={'log-input'} type={"password"} placeholder={"密码"} value={password} onChange={(e)=>setPassword(e.target.value)}/>
+            <button className={'log-button'}>登录</button>
             <p className={"link"} onClick={()=>setLogging(false)}>还没账号？</p>
         </form>
     )

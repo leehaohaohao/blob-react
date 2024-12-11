@@ -1,4 +1,4 @@
-input,button{
+.log-input,.log-button{
     width: 50%;
     height: 7%;
     border-radius: 30px;
@@ -8,11 +8,11 @@ input,button{
     font-size: 15px;
     outline: none;
 }
-input{
+.log-input{
     text-align: center;
 }
 
-input:focus {
+.log-input:focus {
     animation: borderChange 2s forwards;
 }
 /* 动画：边框颜色从左到右渐变 */
@@ -27,12 +27,12 @@ input:focus {
         border-color: #00f2fe;
     }
 }
-button{
+.log-button{
     border: none;
     background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
     transition: transform 0.3s ease;
 }
-button:hover{
+.log-button:hover{
     transform: scale(1.05);
 }
 .form{

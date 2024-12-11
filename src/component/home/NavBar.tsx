@@ -14,7 +14,7 @@ import publish from '../../assets/icon/publish.png'
 import avatar from '../../assets/default/avatar.png'
 const NavBar = () => {
     return (
-        <div className={'nav-bar'}>
+        <nav className={'nav-bar'}>
             <div className={'logo'}>
                 <img src={logo} alt=""/>
                 <div className={'app'}>blob</div>
@@ -84,7 +84,7 @@ const NavBar = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </nav>
     )
 }
 export default NavBar
