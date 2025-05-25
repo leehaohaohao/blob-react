@@ -7,16 +7,22 @@ import './footer.css'
 const Footer = () => {
   return (
       <footer className="footer">
-        <div className={'footer-container'}>
-          <p>©2024-2025 lihao个人所属</p>
-          <div className={'contact'}>
-            <a href={'https://github.com/leehaohaohao'} target={'_blank'}>GitHub个人主页</a>
-            <a href={'https://github.com/leehaohaohao/blob-react'} target={'_blank'}>GitHub此项目仓库地址</a>
-            <p>联系邮箱：805459342@qq.com</p>
+          <div className="footer-container">
+              <div className="footer-copy">© 2024-2025 lihao个人所属</div>
+              <div className="footer-links">
+                  <div className="footer-column">
+                      <a href="https://github.com/leehaohaohao" target="_blank" rel="noreferrer">GitHub个人主页</a>
+                      <a href="https://github.com/leehaohaohao/blob-react" target="_blank"
+                         rel="noreferrer">前端项目仓库地址</a>
+                      <a href="https://github.com/leehaohaohao/blob" target="_blank"
+                         rel="noreferrer">后端项目仓库地址</a>
+                  </div>
+                  <div className="footer-column">
+                      <p className="email">联系邮箱：805459342@qq.com</p>
+                  </div>
+              </div>
           </div>
-        </div>
       </footer>
-
   )
 }
 export default Footer
