@@ -21,7 +21,6 @@ const Login = ({setLogging}:LoggingProps) => {
         const token = data.data;
         console.log(token);
         localStorage.setItem("token",token);
-        //TODO 跳转页面
         navigate("/home")
     }
     return (

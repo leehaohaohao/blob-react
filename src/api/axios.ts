@@ -23,3 +23,8 @@ axiosInstance.interceptors.request.use(
     }
 )
 export default axiosInstance
+export interface ApiResponse<T> {
+    success: boolean;
+    data: T;
+    error?: string;
+}
