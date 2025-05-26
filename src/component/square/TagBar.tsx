@@ -4,24 +4,17 @@
  * @date 2025/5/26 13:18
  */
 import { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getHotTag, TagItem } from "../../api/forum/forum.ts";
 import { useToast } from "../provider/ToastContext.tsx";
 import "./TagBar.css"
 interface TagBarProps {
-    currentTag: string;
-    setCurrentTag: (tag: string) => void;
+    currentTag: string|null;
 }
-const TagBar:React.FC<TagBarProps> = ({ currentTag, setCurrentTag })=> {
+const TagBar:React.FC<TagBarProps> = ({ currentTag })=> {
     const [hotTags, setHotTags] = useState<TagItem[]>([]);
     const navigate = useNavigate();
-    const location = useLocation();
     const { showToast } = useToast();
-
-    useEffect(() => {
-        const tagParam = new URLSearchParams(location.search).get('tag') || 'random_post';
-        setCurrentTag(tagParam);
-    }, [location.search]);
 
     useEffect(() => {
         const fetchTags = async () => {
@@ -44,7 +37,7 @@ const TagBar:React.FC<TagBarProps> = ({ currentTag, setCurrentTag })=> {
     return (
         <div className="tag-bar">
             <span
-                className={`tag ${currentTag === 'random_post' ? 'active' : ''}`}
+                className={`tag ${currentTag === null || currentTag === 'random_post' ? 'active' : ''}`}
                 onClick={() => handleClick('random_post')}
             >
                 推荐

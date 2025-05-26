@@ -1,0 +1,88 @@
+.publish-post-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    font-family: "Helvetica Neue", sans-serif;
+}
+
+.publish-post-title {
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.publish-post-tag-section {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.publish-post-tag-input {
+    width: 150px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.publish-post-add-tag {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.publish-post-editor-section {
+    margin-bottom: 20px;
+}
+
+.publish-post-cover-section {
+    margin-bottom: 20px;
+}
+
+.publish-post-cover-preview {
+    width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+    margin-top: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.publish-post-submit-button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.publish-post-tag-wrapper {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.publish-post-remove-tag {
+    margin-left: 4px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1;
+}

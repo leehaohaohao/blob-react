@@ -1,14 +1,14 @@
 .article-columns-wrapper {
     display: flex;
-    justify-content: center; /* 中间对齐 */
-    gap: 16px;                /* 列间距 */
+    justify-content: center;
+    gap: 16px;
     padding: 16px;
     width: 100%;
     box-sizing: border-box;
 }
 
 .article-column {
-    width: 230px; /* 固定列宽，避免被 flex 拉伸 */
+    width: 230px;
     display: flex;
     flex-direction: column;
     gap: 16px;

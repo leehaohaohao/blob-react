@@ -15,6 +15,7 @@ import avatar from '../../assets/default/avatar.png'
 import {useUser} from "../provider/UserProvider.tsx";
 import {useToast} from "../provider/ToastContext.tsx";
 import {useNavigate} from "react-router-dom";
+import {useState} from "react";
 const NavBar = () => {
     const {user,error} = useUser();
     const {showToast} = useToast();
@@ -22,6 +23,20 @@ const NavBar = () => {
         showToast(error,'error');
     }
     const navigate = useNavigate();
+    const [keyword, setKeyword] = useState('');
+
+    const handleSearch = () => {
+        const trimmed = keyword.trim();
+        if (trimmed) {
+            navigate(`/article?tag=${encodeURIComponent(trimmed)}`);
+        }
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    };
     return (
         <nav className={'nav-bar'}>
             <div className={'logo'}>
@@ -49,28 +64,42 @@ const NavBar = () => {
             </div>
 
             <div className={'search'}>
-                <input type={'text'} placeholder={'搜索'}/>
-                <img src={search} className={'search-icon'} alt={'搜索'}/>
+                <input
+                    type="text"
+                    placeholder="搜索"
+                    value={keyword}
+                    onChange={(e) => setKeyword(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                />
+                <img
+                    src={search}
+                    className="search-icon"
+                    alt="搜索"
+                    onClick={handleSearch}
+                    style={{cursor: 'pointer'}}
+                />
             </div>
 
             <div className={'publish'}>
-                <div className={'publish-container animation-container'}>
+                <div className={'publish-container animation-container'} onClick={()=>{
+                    navigate('/home/publish');
+                }}>
                     <p className={'publish-text text '}>发布</p>
                     <img src={publish} className={'publish-icon icon'} alt={'发布'}/>
                 </div>
             </div>
             <div className={'info'}>
                 <div className={'info-container'}>
-                    <img src={avatar} className={'avatar'} alt={'头像'}/>
+                    <img src={user===null?avatar:user.photo} className={'avatar'} alt={'头像'}/>
                     <div className={'dropdown-menu'}>
                         <div className={'userinfo'}>
                             <div className={'user-row'}>
                                 <span className={'label'}>姓名:</span>
-                                <span className={'value'}>{user?.name}</span>
+                                <span className={'value'}>{user===null?'不挂用户':user.name}</span>
                             </div>
                             <div className={'user-row'}>
                                 <span className={'label'}>UID:</span>
-                                <span className={'value uid'}>{user?.userId}</span>
+                                <span className={'value uid'}>{user===null?'123456':user.userId}</span>
                             </div>
                         </div>
                         <ul className={'menu-list'}>

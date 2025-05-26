@@ -4,7 +4,7 @@
  * @date 2025/5/20 23:47
  */
 import axiosInstance, {ApiResponse} from "../axios.ts";
-import {OtherInfoDto} from "../user/user.ts";
+import {OtherInfoDto, UserInfoDto} from "../user/user.ts";
 const prefix:string = '/forum'
 export interface PostItem {
     postId: string;
@@ -66,5 +66,22 @@ export const getTagPostList = async (tagFuzzy:string,pageNum:string,pageSize:str
     formData.append('pageNum',pageNum);
     formData.append('pageSize',pageSize);
     const res = await axiosInstance.post(prefix+'/tag/post',formData)
+    return res.data
+}
+export const publishPost = async(post_content:string,tagList:string[],title:string,file?:File|null):Promise<ApiResponse<UserInfoDto>> =>{
+    const formData = new FormData()
+    formData.append('post_content',post_content);
+    const tagFilter = tagList.filter(tag => tag.trim() !== '');
+    const tag = tagFilter.join('|');
+    formData.append('tags',tag);
+    formData.append('title',title);
+    if(file){
+        formData.append('file',file)
+    }
+    const res = await axiosInstance.post(prefix+'/post',formData,{
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+        });
     return res.data
 }

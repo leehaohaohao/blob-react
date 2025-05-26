@@ -6,6 +6,7 @@ import {Feedback} from "../component/home/feedback/Feedback.tsx";
 import ComingSoonPage from "../component/home/ComingSoonPage.tsx";
 import Square from "../page/Square.tsx";
 import ArticleHub from "../component/square/ArticleHub.tsx";
+import PublishPost from "../component/home/publish/PublishPost.tsx";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
             {
                 path:'future',
                 element:<ComingSoonPage/>
+            },
+            {
+                path:'publish',
+                element:<PublishPost/>
             }
         ]
     },

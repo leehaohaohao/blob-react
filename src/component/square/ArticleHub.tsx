@@ -9,16 +9,19 @@ import {useLocation} from "react-router-dom";
  * @date 2025/5/26 13:25
  */
 const ArticleHub = () => {
-    const [currentTag, setCurrentTag] = useState<string>('random_post');
+    const [currentTag, setCurrentTag] = useState<string|null>(null);
     const location = useLocation();
 
     useEffect(() => {
         const tagParam = new URLSearchParams(location.search).get('tag') || 'random_post';
-        setCurrentTag(tagParam);
+        if (tagParam !== currentTag) {
+            setCurrentTag(tagParam);
+        }
+        console.log(tagParam,  'tagParam')
     }, [location.search]);
     return (
         <div>
-            <TagBar currentTag={currentTag} setCurrentTag={setCurrentTag}/>
+            <TagBar currentTag={currentTag}/>
             <ArticleList currentTag={currentTag}/>
         </div>
     );
