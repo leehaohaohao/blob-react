@@ -16,6 +16,59 @@
       height:100vh;
       justify-content: center;
     }
+    .toast {
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 14px 28px;
+      border-radius: 16px;
+      font-size: 15px;
+      font-family: "Segoe UI", "Roboto", sans-serif;
+      color: #fff;
+      background: linear-gradient(135deg, #64b5f6, #2196f3);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      animation: bounceFade 3s forwards;
+      z-index: 9999;
+    }
+
+    /* 类型样式（颜色不再突兀，统一蓝色系或淡化） */
+    .toast-info {
+      background: linear-gradient(135deg, #64b5f6, #2196f3);
+    }
+
+    .toast-success {
+      background: linear-gradient(135deg, #81c784, #4caf50);
+    }
+
+    .toast-error {
+      background: linear-gradient(135deg, #e57373, #f44336);
+    }
+
+    /* 动画：弹跳 + 淡出 */
+    @keyframes bounceFade {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, 30px) scale(0.9);
+      }
+      10% {
+        opacity: 1;
+        transform: translate(-50%, -4px) scale(1.02);
+      }
+      20% {
+        transform: translate(-50%, 0) scale(1);
+      }
+      90% {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -20px) scale(0.95);
+      }
+    }
+
+
   </style>
   <body>
     <div id="root"></div>

@@ -12,7 +12,14 @@ import chatroom from '../../assets/icon/chatroom.png'
 import search from '../../assets/icon/search.png'
 import publish from '../../assets/icon/publish.png'
 import avatar from '../../assets/default/avatar.png'
+import {useUser} from "../provider/UserProvider.tsx";
+import {useToast} from "../provider/ToastContext.tsx";
 const NavBar = () => {
+    const {user,error} = useUser();
+    const {showToast} = useToast();
+    if(error!==null){
+        showToast(error,'error');
+    }
     return (
         <nav className={'nav-bar'}>
             <div className={'logo'}>
@@ -50,38 +57,23 @@ const NavBar = () => {
                 <div className={'info-container'}>
                     <img src={avatar} className={'avatar'} alt={'头像'}/>
                     <div className={'dropdown-menu'}>
-                        <ul>
-                            <div className={'userinfo'}>
-                                <div className={'name'}>
-                                    <div className={'name-text'}>
-                                        <span>姓名:</span>
-                                    </div>
-                                    <div className={'name-value'}>
-                                        <span>李昊</span>
-                                    </div>
-                                </div>
-                                <hr/>
-                                <div className={'id'}>
-                                    <div className={'id-text'}>
-                                        <span>UID:</span>
-                                    </div>
-                                    <div className={'id-value'}>
-                                        <span>123456789</span>
-                                    </div>
-                                </div>
-                                <hr/>
+                        <div className={'userinfo'}>
+                            <div className={'user-row'}>
+                                <span className={'label'}>姓名:</span>
+                                <span className={'value'}>{user?.name}</span>
                             </div>
-                            <li>
-                                <a>我的喜欢</a>
-                            </li>
-                            <li>
-                                <a>我的关注</a>
-                            </li>
-                            <li>
-                                <a>我的文章</a>
-                            </li>
+                            <div className={'user-row'}>
+                                <span className={'label'}>UID:</span>
+                                <span className={'value uid'}>{user?.userId}</span>
+                            </div>
+                        </div>
+                        <ul className={'menu-list'}>
+                            <li><a>我的喜欢</a></li>
+                            <li><a>我的关注</a></li>
+                            <li><a>我的文章</a></li>
                         </ul>
                     </div>
+
                 </div>
             </div>
         </nav>

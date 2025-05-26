@@ -9,13 +9,13 @@ import './home.css'
  */
 const Home = () =>{
     return (
-        <div className={"container"}>
-            <NavBar/>
-            <main>
-                <Outlet/>
-            </main>
-            <Footer/>
-        </div>
+            <div className={"container"}>
+                <NavBar/>
+                <main>
+                    <Outlet/>
+                </main>
+                <Footer/>
+            </div>
     )
 }
 export default Home;

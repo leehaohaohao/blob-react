@@ -5,8 +5,11 @@
  */
 import './front.css'
 import {useEffect, useState} from "react";
-import {getUserInfo} from "../../../api/user/user.ts";
 import {getUserLikeOrCollect, getUserPost, PostItem} from "../../../api/forum/forum.ts";
+import {useUser} from "../../provider/UserProvider.tsx";
+import {useToast} from "../../provider/ToastContext.tsx";
+import {updateUserTag} from "../../../api/user/user.ts";
+import {useNavigate} from "react-router-dom";
 
 const Front = ()=>{
     const [isTagFormVisible,setTagFormVisible] = useState(false);
@@ -14,19 +17,13 @@ const Front = ()=>{
     const [coverUserPost,setCoverUserPost] = useState<PostItem[]>([]);
     const [coverUserLike,setCoverUserLike] = useState<PostItem[]>([]);
     const [coverUserCollect,setCoverUserCollect] = useState<PostItem[]>([]);
+    const {user,error} = useUser();
+    const {showToast} = useToast();
+    const navigate = useNavigate();
+    if(error!==null){
+        showToast(error,'error');
+    }
     useEffect(()=>{
-        const userInfo = async()=>{
-            try{
-                const data = await getUserInfo();
-                //console.log(data)
-                const user = data.data;
-                const tags = user.selfTag.split('|');
-                setTagsList(tags);
-            }catch (e){
-                return e;
-            }
-        }
-        userInfo();
         const userPost = async()=>{
             try{
                 const data = await getUserPost('1','5','2');
@@ -57,8 +54,42 @@ const Front = ()=>{
             }
         }
         userCollect();
-    },[])
 
+    },[]);
+    useEffect(() => {
+        if (user?.selfTag && tagsList.length === 0) {
+            const tag = user.selfTag.split('|');
+            setTagsList(tag);
+            console.log(tag);
+        }
+    }, [user]);
+    const updateTag = async()=>{
+        try{
+            const filteredTags = tagsList.filter(tag => tag.trim() !== '');
+            const tag = filteredTags.join('|');
+            console.log(tag,'更新标签')
+            const data = await updateUserTag(tag);
+            if(!data.success){
+                showToast(typeof data.message === "string" ? data.message :'error');
+            }
+        }catch (e){
+            console.log(e,"更新标签失败");
+        }
+    }
+    // 添加空标签（最多5个）
+    const addTag = (e: React.MouseEvent) => {
+        e.preventDefault(); // 阻止表单默认提交
+        if (tagsList.length >= 5){
+            showToast('最多添加5个标签','error');
+            return;
+        }
+        const hasEmptyTag = tagsList.some(tag => tag.trim() === '');
+        if (hasEmptyTag) {
+            showToast('请先填写已有空标签再添加新标签', 'info');
+            return;
+        }
+        setTagsList([...tagsList, ""]);
+    };
     return (
         <div className={'front-container'}>
             <div className={'left'}>
@@ -142,58 +173,84 @@ const Front = ()=>{
                     <div className={'right-info'}>
                         <div className={'right-info-container'}>
                             <span>文章数：</span>
-                            <span>3</span>
+                            <span>{user?.post}</span>
                         </div>
                         <div className={'right-info-container'}>
                             <span>粉丝数：</span>
-                            <span>2</span>
+                            <span>{user?.followers}</span>
                         </div>
                         <div className={'right-info-container'}>
                             <span>关注数：</span>
-                            <span>1</span>
+                            <span>{user?.concern}</span>
                         </div>
                     </div>
                     <div className={'feature-square'}>
-                        <div className={'right-feature-container'}>
+                        <div className={'right-feature-container'} onClick={() => {
+                            navigate('/home/future');
+                        }}>
                             公告
                         </div>
-                        <div className={'right-feature-container'}>
+                        <div className={'right-feature-container'} onClick={() => {
+                            navigate('/home/feedback');
+                        }}>
                             问题反馈
                         </div>
-                        <div className={'right-feature-container'}>
+                        <div className={'right-feature-container'} onClick={() => {
+                            navigate('/home/future');
+                        }}>
                             不挂云盘
                         </div>
-                        <div className={'right-feature-container'}>
+                        <div className={'right-feature-container'} onClick={() => {
+                            navigate('/home/future');
+                        }}>
                             不挂商场
                         </div>
-                        <div className={'right-feature-container'}>
+                        <div className={'right-feature-container'} onClick={() => {
+                            navigate('/home/future');
+                        }}>
                             不挂考研
                         </div>
-                        <div className={'right-feature-container'}>
+                        <div className={'right-feature-container'} onClick={() => {
+                            navigate('/home/future');
+                        }}>
                             不挂考公
                         </div>
-                        <div className={'right-feature-container'}>
+                        <div className={'right-feature-container'} onClick={() => {
+                            navigate('/home/future');
+                        }}>
                             不挂英语
                         </div>
-                        <div className={'right-feature-container'}>
+                        <div className={'right-feature-container'} onClick={() => {
+                            navigate('/home/future');
+                        }}>
                             不挂留学
                         </div>
                     </div>
                 </div>
                 {isTagFormVisible && (
+                    //TODO 标签显示问题 && 添加标签超出内容框
                     <>
-                    <div className={'overlay'} onClick={()=>setTagFormVisible(false)}></div>
+                    <div className={'overlay'} onClick={()=>{
+                        setTagsList(tagsList.filter(tag => tag.trim() !== '')); // 清理空标签
+                        updateTag();
+                        setTagFormVisible(false)
+                    }}></div>
                         <div className={'tag-form'}>
                             <p className={'tag-form-info'}>点击表单外区域自动关闭表单</p>
                             {tagsList.length > 0 ? (
                                 tagsList.map((tag, index) => (
-                                    <input className={'tag-form-box'} key={index} value={tag}/>
+                                    <input className={'tag-form-box'} key={index} value={tag}
+                                    onChange={(e)=>{
+                                        const newTags = [...tagsList];
+                                        newTags[index] = e.target.value;
+                                        setTagsList(newTags);
+                                    }}/>
                                 ))
                             ) : (
                                 <p>暂无标签！</p>
                             )}
-                            <form className={'tag-form-content'}>
-                                <button className={'tag-add'}>添加标签</button>
+                            <form className={'tag-form-content'} onSubmit={e => e.preventDefault()}>
+                                <button className={'tag-add'} onClick={addTag}>添加标签</button>
                             </form>
                         </div>
                     </>

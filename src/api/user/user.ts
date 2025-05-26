@@ -24,3 +24,9 @@ export const getUserInfo = async(): Promise<ApiResponse<UserInfoDto>> =>{
     const res = await axiosInstance.get(prefix+'/info')
     return res.data
 }
+export const updateUserTag = async(selfTag:string): Promise<ApiResponse<UserInfoDto>> =>{
+    const formData = new FormData()
+    formData.append('selfTag',selfTag);
+    const res = await axiosInstance.post(prefix+'/updateTag', formData);
+    return res.data
+}
