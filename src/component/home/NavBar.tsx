@@ -14,12 +14,14 @@ import publish from '../../assets/icon/publish.png'
 import avatar from '../../assets/default/avatar.png'
 import {useUser} from "../provider/UserProvider.tsx";
 import {useToast} from "../provider/ToastContext.tsx";
+import {useNavigate} from "react-router-dom";
 const NavBar = () => {
     const {user,error} = useUser();
     const {showToast} = useToast();
     if(error!==null){
         showToast(error,'error');
     }
+    const navigate = useNavigate();
     return (
         <nav className={'nav-bar'}>
             <div className={'logo'}>
@@ -28,11 +30,15 @@ const NavBar = () => {
             </div>
 
             <div className={'tab'}>
-                <div className={'tab-item animation-container'}>
+                <div className={'tab-item animation-container'} onClick={()=>{
+                    navigate('/home');
+                }}>
                     <p className={'tab-item-text text'}>首页</p>
                     <img src={home} className={'tab-item-icon icon'} alt={'首页'}/>
                 </div>
-                <div className={'tab-item animation-container'}>
+                <div className={'tab-item animation-container'} onClick={()=>{
+                    navigate('/article');
+                }}>
                     <p className={'tab-item-text text'}>文章</p>
                     <img src={article} className={'tab-item-icon icon'} alt={'文章'}/>
                 </div>
