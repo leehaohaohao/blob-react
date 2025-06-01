@@ -33,7 +33,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ post, onFollowClick }) => {
 
     return (
         <div className="article-card">
-            <a href={`/postDetail?postId=${post.postId}`}>
+            <a href={`/article/content?postId=${post.postId}`}>
                 <img src={post.cover} alt="封面" className="article-card-cover" />
                 <div className="article-card-title">{post.title}</div>
             </a>

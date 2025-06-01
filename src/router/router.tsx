@@ -7,6 +7,7 @@ import ComingSoonPage from "../component/home/ComingSoonPage.tsx";
 import Square from "../page/Square.tsx";
 import ArticleHub from "../component/square/ArticleHub.tsx";
 import PublishPost from "../component/home/publish/PublishPost.tsx";
+import PostDetail from "../component/square/PostDetail.tsx";
 
 const router = createBrowserRouter([
     {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
             {
                 path: '',
                 element: <ArticleHub/>
+            },
+            {
+                path: 'content',
+                element: <PostDetail/>
             }
         ]
     }

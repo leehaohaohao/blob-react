@@ -1,0 +1,107 @@
+.cmt-container {
+    width: 100%;
+    margin: 5px;
+}
+
+.cmt-comment-container {
+    margin-bottom: 12px;
+}
+
+.cmt-remark {
+    border: 1px solid #e4e4e4;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    background-color: #fafafa;
+    cursor: default;
+}
+
+.cmt-pare {
+    background-color: #f9f9f9;
+}
+
+.cmt-rinnerCmmt {
+    background-color: #fff;
+    margin-left: 40px;
+    border-color: #ddd;
+}
+
+.cmt-rinnerCmmt_Head {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #444;
+}
+
+.cmt-remkPersonPic {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 8px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+}
+
+.cmt-remark-content {
+    cursor: pointer;
+}
+
+.cmt-remark-content:hover {
+    background-color: #eef4ff;
+    border-radius: 6px;
+}
+
+.cmt-remark_P {
+    margin: 0;
+    padding: 0 0 4px 0;
+    color: #333;
+    white-space: pre-wrap;
+}
+
+.cmt-reply-text {
+    font-size: 12px;
+    color: #999;
+    margin-top: 2px;
+}
+
+.cmt-children {
+    margin-top: 8px;
+}
+
+.cmt-form {
+    display: flex;
+    border: 2px solid #e4e4e4;
+    border-radius: 24px;
+    padding: 6px 12px;
+    align-items: center;
+}
+
+.cmt-form:focus-within {
+    border-color: #8dabf6;
+}
+
+.cmt-form input[type="text"] {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 20px;
+}
+
+.cmt-submit-btn {
+    margin-left: 12px;
+    background-color: #3b82f6;
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cmt-submit-btn:hover {
+    background-color: #2563eb;
+}

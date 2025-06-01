@@ -4,15 +4,15 @@
  * @date 2025/5/26 18:11
  */
 import React, {useState } from 'react';
-import '@wangeditor/editor/dist/css/style.css'; // 富文本样式
+import '@wangeditor/editor/dist/css/style.css';
 import { Editor, Toolbar } from '@wangeditor/editor-for-react';
 import type { IDomEditor } from '@wangeditor/editor';
 import './PublishPost.css';
-import { publishPost } from "../../../api/forum/forum.ts"; // 调用你已有的发布接口
+import { publishPost } from "../../../api/forum/forum.ts";
 import { useToast } from "../../provider/ToastContext.tsx";
 import { useNavigate } from "react-router-dom";
 
-const MAX_TAGS = 3;
+const MAX_TAGS = 5;
 const MAX_TAG_LENGTH = 10;
 
 const PublishPost = () => {

@@ -17,9 +17,10 @@ const COLUMN_COUNT = 5;
 const ArticleList: React.FC<ArticleListProps> = ({ currentTag }) => {
     const [postList, setPostList] = useState<PostItem[]>([]);
     //TODO 首页搜索进入会调用三次接口
+    //TODO 下滑调用接口
     useEffect(() => {
         const fetchTagPost = async () => {
-            const res = await getTagPostList(typeof currentTag === "string" ? currentTag :'random_post', '1', '30'); // 多取一点
+            const res = await getTagPostList(typeof currentTag === "string" ? currentTag :'random_post', '1', '25'); // 多取一点
             console.log(res);
             setPostList(res.data.list);
         };
