@@ -5,10 +5,10 @@
  */
 import './front.css'
 import {useEffect, useState} from "react";
-import {getUserLikeOrCollect, getUserPost, PostItem} from "../../../api/forum/forum.ts";
+import {getUserLikeOrCollect, getUserPost, PostItem} from "../../../api/feature/forum.ts";
 import {useUser} from "../../provider/UserProvider.tsx";
 import {useToast} from "../../provider/ToastContext.tsx";
-import {updateUserTag} from "../../../api/user/user.ts";
+import {updateUserTag} from "../../../api/feature/user.ts";
 import {useNavigate} from "react-router-dom";
 
 const Front = ()=>{
@@ -101,7 +101,7 @@ const Front = ()=>{
                         //TODO 点击后跳转至文章详情
                         return (
                             <div className={'front-like'}>
-                                <div className={'front-imgContainer'}>
+                                <div className={'front-imgContainer'} onClick={()=>{navigate('/article/content/'+post.postId)}}>
                                     <img className={'front-post-img'} src={post.cover} alt={'头像'}/>
                                     <div className={'front-post-title'}>
                                         {post.title}
@@ -116,19 +116,19 @@ const Front = ()=>{
                     <div className={'front-post-cover'}>
                         <span>我 的 喜 欢</span>
                     </div>
-                    {coverUserLike.map((post)=>{
-                        //TODO 点击后跳转至文章详情
-                        return (
-                            <div className={'front-like'}>
-                                <div className={'front-imgContainer'}>
-                                    <img className={'front-post-img'} src={post.cover} alt={'头像'}/>
-                                    <div className={'front-post-title'}>
-                                        {post.title}
+                    {
+                        coverUserLike.map((post)=>{
+                            return (
+                                <div className={'front-like'}>
+                                    <div className={'front-imgContainer'}>
+                                        <img className={'front-post-img'} src={post.cover} alt={'头像'}/>
+                                        <div className={'front-post-title'}>
+                                            {post.title}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        )
-                    })
+                            )
+                        })
                     }
                 </div>
                 <div className={'left-box'}>

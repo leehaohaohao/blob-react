@@ -45,7 +45,11 @@ const router = createBrowserRouter([
                 element: <ArticleHub/>
             },
             {
-                path: 'content',
+                path: ':tag',
+                element: <ArticleHub/>
+            },
+            {
+                path: 'content/:postId',
                 element: <PostDetail/>
             }
         ]

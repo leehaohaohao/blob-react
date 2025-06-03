@@ -1,0 +1,66 @@
+/**
+ * @description
+ * @author lihao
+ * @date 2025/6/2
+ */
+import axiosInstance, {ApiResponse} from "../axios.ts";
+import {UserInfoDto} from "./user.ts";
+const prefix = '/social'
+export interface ChildComment {
+    commentId: string;
+    userId: string;
+    photo: string;
+    userName: string;
+    parentId: string;
+    parentName?: string;
+    commentContent: string;
+    topId: string;
+    commentDate: string;
+}
+
+export interface CommentItem {
+    commentId: string;
+    userId: string;
+    photo: string;
+    userName: string;
+    parentId: string;
+    commentContent: string;
+    topId: string;
+    commentDate: string;
+    childCommentDto?: ChildComment[];
+}
+export interface CommentResponse{
+    topId: string,
+    commentId: string;
+}
+export interface ConcernItem{
+    userInfo:UserInfoDto,
+    status:number;
+}
+export const getPostComment = async (postId:string):Promise<ApiResponse<CommentItem[]>> =>{
+    const formData = new FormData()
+    formData.append('postId',postId)
+    const res = await axiosInstance.post(prefix+'/get/comment',formData)
+    return res.data
+}
+export const concernOther = async (otherId:string):Promise<ApiResponse<null>> =>{
+    const formData = new FormData()
+    formData.append('otherId',otherId)
+    const res = await axiosInstance.post(prefix+'/concern',formData)
+    return res.data
+}
+export const commentToPost = async (postId:string,parentId:string,commentContent:string): Promise<ApiResponse<CommentResponse>> =>{
+    const formData = new FormData()
+    formData.append('postId',postId)
+    formData.append('parentId',parentId)
+    formData.append('commentContent',commentContent)
+    const res = await axiosInstance.post(prefix+'/comment',formData)
+    return res.data
+}
+export const getConcernList = async (pageNum:string,pageSize:string):Promise<ApiResponse<ConcernItem[]>> =>{
+    const formData = new FormData()
+    formData.append('pageNum',pageNum)
+    formData.append('pageSize',pageSize)
+    const res = await axiosInstance.post(prefix+'/get/concern',formData)
+    return res.data
+}

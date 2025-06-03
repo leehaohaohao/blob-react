@@ -28,7 +28,7 @@ const NavBar = () => {
     const handleSearch = () => {
         const trimmed = keyword.trim();
         if (trimmed) {
-            navigate(`/article?tag=${encodeURIComponent(trimmed)}`);
+            navigate(`/article/${encodeURIComponent(trimmed)}`);
         }
     };
 

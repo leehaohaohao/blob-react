@@ -148,34 +148,57 @@
     font-size: 24px;
     font-weight: bold;
 }
-.front-like{
+.front-like {
     width: 15%;
     border-radius: 10%;
     margin: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
-.front-imgContainer{
+
+.front-like:hover {
+    transform: scale(1.05); /* 悬浮时轻微放大 */
+}
+
+.front-imgContainer {
     position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
     border-radius: 10%;
 }
-.front-post-img{
+
+.front-post-img {
     border-radius: 10%;
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
 }
-.front-post-title{
+
+.front-like:hover .front-post-img {
+    transform: scale(1.1); /* 图片悬浮时放大一点 */
+}
+
+.front-post-title {
     position: absolute;
-    bottom: 0;
+    bottom: -40px; /* 默认隐藏在外 */
     width: 100%;
     padding: 8px;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     color: white;
     font-size: 16px;
     text-align: center;
     box-sizing: border-box;
+    transition: bottom 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
 }
+
+.front-like:hover .front-post-title {
+    bottom: 0;
+    opacity: 1;
+}
+
 .right-info {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

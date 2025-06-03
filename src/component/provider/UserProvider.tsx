@@ -3,7 +3,7 @@
  * @author lihao
  * @date 2025/5/26 08:16
  */
-import {getUserInfo, UserInfoDto} from "../../api/user/user.ts";
+import {getUserInfo, UserInfoDto} from "../../api/feature/user.ts";
 import {createContext, useContext, useEffect, useState} from "react";
 
 interface UserContextType {

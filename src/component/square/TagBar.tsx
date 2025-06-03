@@ -5,7 +5,7 @@
  */
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getHotTag, TagItem } from "../../api/forum/forum.ts";
+import { getHotTag, TagItem } from "../../api/feature/forum.ts";
 import { useToast } from "../provider/ToastContext.tsx";
 import "./TagBar.css"
 interface TagBarProps {
@@ -29,7 +29,7 @@ const TagBar:React.FC<TagBarProps> = ({ currentTag })=> {
     }, []);
 
     const handleClick = (tag: string) => {
-        navigate(`/article?tag=${tag}`);
+        navigate(`/article/${tag}`);
     };
 
     const isFreeTag = !hotTags.some(item => item.tag === currentTag) && currentTag !== 'random_post';

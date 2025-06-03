@@ -4,7 +4,7 @@
  * @date 2025/5/26 13:48
  */
 import { useEffect, useState } from "react";
-import { getTagPostList, PostItem } from "../../api/forum/forum.ts";
+import { getTagPostList, PostItem } from "../../api/feature/forum.ts";
 import ArticleCard from "./ArticleCard.tsx";
 import './ArticleList.css'
 
@@ -16,16 +16,37 @@ const COLUMN_COUNT = 5;
 
 const ArticleList: React.FC<ArticleListProps> = ({ currentTag }) => {
     const [postList, setPostList] = useState<PostItem[]>([]);
-    //TODO 首页搜索进入会调用三次接口
-    //TODO 下滑调用接口
+
     useEffect(() => {
+        let isMounted = true;
+        const abortController = new AbortController();
+
         const fetchTagPost = async () => {
-            const res = await getTagPostList(typeof currentTag === "string" ? currentTag :'random_post', '1', '25'); // 多取一点
-            console.log(res);
-            setPostList(res.data.list);
+            try {
+                const res = await getTagPostList(
+                    typeof currentTag === "string" ? currentTag : 'random_post',
+                    '1',
+                    '25',
+                    { signal: abortController.signal }
+                );
+                if (isMounted) {
+                    setPostList(res.data.list);
+                }
+            } catch (error) {
+                if (!abortController.signal.aborted) {
+                    console.error("Fetch error:", error);
+                }
+            }
         };
+
         fetchTagPost();
+
+        return () => {
+            isMounted = false;
+            abortController.abort();
+        };
     }, [currentTag]);
+
 
     const handleFollow = (userId: string) => {
         console.log("关注用户：", userId);

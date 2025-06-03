@@ -8,7 +8,7 @@ import '@wangeditor/editor/dist/css/style.css';
 import { Editor, Toolbar } from '@wangeditor/editor-for-react';
 import type { IDomEditor } from '@wangeditor/editor';
 import './PublishPost.css';
-import { publishPost } from "../../../api/forum/forum.ts";
+import { publishPost } from "../../../api/feature/forum.ts";
 import { useToast } from "../../provider/ToastContext.tsx";
 import { useNavigate } from "react-router-dom";
 

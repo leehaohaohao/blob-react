@@ -4,7 +4,7 @@
  * @date 2025/5/26 14:00
  */
 import './ArticleCard.css';
-import { PostItem } from "../../api/forum/forum.ts";
+import { PostItem } from "../../api/feature/forum.ts";
 
 interface ArticleCardProps {
     post: PostItem;
@@ -33,13 +33,13 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ post, onFollowClick }) => {
 
     return (
         <div className="article-card">
-            <a href={`/article/content?postId=${post.postId}`}>
+            <a href={`/article/content/${post.postId}`}>
                 <img src={post.cover} alt="封面" className="article-card-cover" />
                 <div className="article-card-title">{post.title}</div>
             </a>
             <div className="article-card-tags">
                 {post.tag.split('|').map(tag => (
-                    <a key={tag} href={`/article?tag=${tag}`} className="article-card-tag">{tag}</a>
+                    <a key={tag} href={`/article/tag=${tag}`} className="article-card-tag">{tag}</a>
                 ))}
             </div>
             <div className="article-card-user-info">

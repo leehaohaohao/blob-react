@@ -5,18 +5,22 @@
  */
 import './PostDetail.css'
 import CommentSection from "./CommentSection.tsx";
+import {useEffect, useState} from "react";
+import {getPostDetail, PostDetailItem} from "../../api/feature/forum.ts";
+import {useNavigate, useParams} from "react-router-dom";
 const PostDetail = () => {
-    const htmlContent = `
-      <h1>标题</h1>
-      <p>段落1</p>
-      <p>段落2</p>
-      <p>段落3</p>
-    `;
-    // 模拟后端返回的点赞收藏状态和数量
-    const liked = true;
-    const favorited = true;
-    const likeCount = 123;
-    const favoriteCount = 45;
+    const [postDetailItem,setPostDetailItem]  = useState<PostDetailItem>();
+    const { postId } = useParams<{ postId: string }>();
+    const navigate = useNavigate();
+    useEffect(() => {
+        const postDetail = async (postId:string) => {
+            const data = await getPostDetail(postId);
+            setPostDetailItem(data.data);
+        }
+        if(postId){
+            postDetail(postId);
+        }
+    }, [postId]);
 
     return (
         <div className="container">
@@ -24,15 +28,14 @@ const PostDetail = () => {
                 <div className="post-detail-author">
                     <img
                         className="author-avatar"
-                        src="https://i.pravatar.cc/80"
+                        src={postDetailItem?.photo}
                         alt="作者头像"
                     />
-                    <div className="author-name">李浩</div>
-                    {/* 点赞收藏区域 */}
+                    <div className="author-name">{ postDetailItem?.name}</div>
                     <div className="post-interact">
                         <div className="interact-item">
                             <svg
-                                className={`icon like-icon ${liked ? 'liked' : ''}`}
+                                className={`icon like-icon ${postDetailItem?.isLove ? 'liked' : ''}`}
                                 viewBox="0 0 1024 1024"
                                 xmlns="http://www.w3.org/2000/svg"
                                 p-id="4387"
@@ -42,33 +45,52 @@ const PostDetail = () => {
                                     p-id="4388"
                                 />
                             </svg>
-                            <span className="count">{likeCount}</span>
+                            <span className="count">{postDetailItem?.postLike}</span>
                         </div>
 
                         <div className="interact-item">
-                            <svg className={`icon favorite-icon ${favorited ? 'favorited' : ''}`} viewBox="0 0 1024 1024" version="1.1"
+                            <svg className={`icon favorite-icon ${postDetailItem?.isCollect ? 'favorited' : ''}`} viewBox="0 0 1024 1024" version="1.1"
                                  xmlns="http://www.w3.org/2000/svg" p-id="5580" width="200" height="200">
                                 <path
                                     d="M249.027212 1024a81.085086 81.085086 0 0 1-47.614289-15.359448 82.461037 82.461037 0 0 1-34.302767-81.917056l40.958528-251.894948a31.99885 31.99885 0 0 0-8.703687-27.647006L23.755308 466.452037a83.932984 83.932984 0 0 1-19.455301-84.988946 82.301042 82.301042 0 0 1 65.917631-55.805994L307.905096 289.306403a31.198879 31.198879 0 0 0 24.063135-17.919356l104.956229-223.351973a82.90902 82.90902 0 0 1 150.394595 0l104.540243 223.351973a31.99885 31.99885 0 0 0 24.063135 17.919356l237.463466 36.350694a83.453001 83.453001 0 0 1 46.590326 140.79494l-175.609689 180.729505a32.606828 32.606828 0 0 0-8.703687 27.647006l40.958528 251.894948a83.804988 83.804988 0 0 1-34.302767 81.917056 81.853058 81.853058 0 0 1-88.060836 4.607834l-206.712571-114.683878a32.670826 32.670826 0 0 0-30.718896 0l-207.352548 115.19586a87.964839 87.964839 0 0 1-40.446547 10.239632z"
                                     p-id="5581">
                                 </path>
                             </svg>
-                            <span className="count">{favoriteCount}</span>
+                            <span className="count">{postDetailItem?.collect}</span>
                         </div>
                     </div>
                 </div>
                 <div className="post-detail-container">
                     <div className="post-detail-header">
-                        <span className="post-title-text">标题</span>
-                        <span className="post-detail-time">发布于 2025-06-01 18:04:23</span>
+                        <span className="post-title-text">{postDetailItem?.title}</span>
+                        <span className="post-detail-time">
+                            发布于 {
+                                postDetailItem?.postTime
+                                    ? new Date(postDetailItem.postTime).toLocaleString('zh-CN', {
+                                        year: 'numeric',
+                                        month: '2-digit',
+                                        day: '2-digit',
+                                        hour: '2-digit',
+                                        minute: '2-digit',
+                                        hour12: false,
+                                    })
+                                    : ''
+                                }
+                        </span>
                     </div>
 
                     <div className="post-detail-tagContainer">
-                        <div className="post-detail-tag">标签1</div>
+                        {
+                            postDetailItem?.tag.split('|').map((tag, index) => (
+                                <div key={index} className="post-detail-tag" onClick={() => {navigate(`/article/${tag}`);}}>
+                                    {tag}
+                                </div>
+                            ))
+                        }
                     </div>
                     <div
                         className="post-content"
-                        dangerouslySetInnerHTML={{__html: htmlContent}}
+                        dangerouslySetInnerHTML={{__html: postDetailItem?.postContent || '<h1>正在加载中！</h1>'}}
                     />
                 </div>
 
@@ -79,6 +101,4 @@ const PostDetail = () => {
         </div>
     );
 };
-
-
 export default PostDetail;

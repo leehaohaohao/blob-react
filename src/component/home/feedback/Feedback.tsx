@@ -5,7 +5,7 @@
  */
 import React, { useEffect, useState } from 'react';
 import './Feedback.css';
-import {getErrorList, publishError, TypeItem} from "../../../api/feedback/feedback.ts";
+import {getErrorList, publishError, TypeItem} from "../../../api/feature/feedback.ts";
 import {useToast} from "../../provider/ToastContext.tsx";
 import {useNavigate} from "react-router-dom";
 
