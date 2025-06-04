@@ -6,17 +6,6 @@
 import axiosInstance, {ApiResponse} from "../axios.ts";
 import {UserInfoDto} from "./user.ts";
 const prefix = '/social'
-export interface ChildComment {
-    commentId: string;
-    userId: string;
-    photo: string;
-    userName: string;
-    parentId: string;
-    parentName?: string;
-    commentContent: string;
-    topId: string;
-    commentDate: string;
-}
 
 export interface CommentItem {
     commentId: string;
@@ -24,10 +13,11 @@ export interface CommentItem {
     photo: string;
     userName: string;
     parentId: string;
+    parentName: string;
     commentContent: string;
     topId: string;
     commentDate: string;
-    childCommentDto?: ChildComment[];
+    childCommentDto?: CommentItem[];
 }
 export interface CommentResponse{
     topId: string,

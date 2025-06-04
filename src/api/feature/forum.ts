@@ -85,11 +85,9 @@ export const getTagPostList = async (
     formData.append('tagFuzzy', tagFuzzy);
     formData.append('pageNum', pageNum);
     formData.append('pageSize', pageSize);
-
     const res = await axiosInstance.post(prefix + '/tag/post', formData, {
-        signal: options?.signal // 传递 AbortSignal
+        signal: options?.signal
     });
-
     return res.data;
 };
 export const publishPost = async(post_content:string,tagList:string[],title:string,file?:File|null):Promise<ApiResponse<UserInfoDto>> =>{
@@ -131,5 +129,15 @@ export const getUserLikeOrCollectPostList = async (pageNum:string,pageSize:strin
     formData.append('pageSize',pageSize);
     formData.append('status',status);
     const res = await axiosInstance.post(prefix+'/my/like/collect/post',formData)
+    return res.data
+}
+export const likeOrCollectPost = async (postId:string,status:string,type:string):Promise<ApiResponse<UserInfoDto>> =>{
+    //status 0:add 1:cancel
+    //type 0:like 1:collect
+    const formData = new FormData()
+    formData.append('postId',postId);
+    formData.append('status',status);
+    formData.append('type',type);
+    const res = await axiosInstance.post(prefix+'/love/collect',formData)
     return res.data
 }

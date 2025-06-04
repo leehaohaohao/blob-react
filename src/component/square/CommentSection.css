@@ -1,107 +1,168 @@
-.cmt-container {
-    width: 100%;
-    margin: 5px;
-}
-
-.cmt-comment-container {
-    margin-bottom: 12px;
-}
-
-.cmt-remark {
-    border: 1px solid #e4e4e4;
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    background-color: #fafafa;
-    cursor: default;
-}
-
-.cmt-pare {
-    background-color: #f9f9f9;
-}
-
-.cmt-rinnerCmmt {
-    background-color: #fff;
-    margin-left: 40px;
-    border-color: #ddd;
-}
-
-.cmt-rinnerCmmt_Head {
+.comment-section-container {
+    position: relative;
+    height: 100%;
     display: flex;
-    align-items: center;
-    margin-bottom: 6px;
-    font-weight: 600;
-    color: #444;
+    flex-direction: column;
 }
 
-.cmt-remkPersonPic {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    margin-right: 8px;
-    object-fit: cover;
-    border: 1px solid #ccc;
-}
-
-.cmt-remark-content {
-    cursor: pointer;
-}
-
-.cmt-remark-content:hover {
-    background-color: #eef4ff;
-    border-radius: 6px;
-}
-
-.cmt-remark_P {
-    margin: 0;
-    padding: 0 0 4px 0;
-    color: #333;
-    white-space: pre-wrap;
-}
-
-.cmt-reply-text {
-    font-size: 12px;
-    color: #999;
-    margin-top: 2px;
-}
-
-.cmt-children {
-    margin-top: 8px;
-}
-
-.cmt-form {
-    display: flex;
-    border: 2px solid #e4e4e4;
-    border-radius: 24px;
-    padding: 6px 12px;
-    align-items: center;
-}
-
-.cmt-form:focus-within {
-    border-color: #8dabf6;
-}
-
-.cmt-form input[type="text"] {
+/* 滚动区域只包裹评论列表 */
+.comment-section-wrapper {
     flex: 1;
-    border: none;
-    outline: none;
-    font-size: 14px;
-    padding: 6px 10px;
-    border-radius: 20px;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: #f0f8ff; /* AliceBlue 浅蓝背景 */
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.cmt-submit-btn {
-    margin-left: 12px;
-    background-color: #3b82f6;
-    border: none;
-    color: white;
-    font-weight: 600;
-    padding: 6px 16px;
-    border-radius: 20px;
-    cursor: pointer;
+/* 评论项样式 */
+.comment-section-item {
+    display: block;
+    margin-bottom: 15px;
+    padding: 12px 16px;
+    background-color: #ffffff; /* 白色背景 */
+    border: 1px solid #d0e7f9; /* 浅蓝边框 */
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(173, 216, 230, 0.3); /* 浅蓝阴影 */
     transition: background-color 0.3s ease;
+    cursor: pointer;
 }
 
-.cmt-submit-btn:hover {
-    background-color: #2563eb;
+.comment-section-item:hover {
+    background-color: #e6f2ff; /* 悬停浅蓝高亮 */
+}
+
+.comment-section-child {
+    margin-left: 24px;
+    background-color: #f7fbff; /* 更浅蓝 */
+    border: 1px solid #c0dffb;
+}
+
+/* 评论头部 */
+.comment-section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+/* 头像 */
+.comment-section-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    border: 1.5px solid #a9d0f5; /* 淡蓝色边框 */
+    cursor: pointer;
+}
+
+/* 用户名 */
+.comment-section-username {
+    font-weight: 600;
+    font-size: 14px;
+    color: #007acc; /* 主蓝色 */
+    white-space: nowrap;
+}
+
+/* 评论内容 */
+.comment-section-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #3a4f6b; /* 蓝灰色文字 */
+    word-break: break-word;
+}
+
+/* 评论时间 */
+.comment-section-date {
+    font-size: 0.8rem;
+    color: #7a9cc6;
+    margin-left: 10px;
+    align-self: center;
+}
+
+/* 评论区专属滚动条 */
+.comment-section-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.comment-section-wrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 122, 204, 0.3);
+    border-radius: 4px;
+}
+
+.comment-section-wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 122, 204, 0.5);
+}
+
+/* 底部固定输入栏 */
+.comment-input-bar {
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 0 0 10px 10px;
+    background-color: rgba(240, 248, 255, 0.95); /* 半透明浅蓝白 */
+    border-top: 1px solid #d0e7f9;
+    z-index: 10;
+    gap: 12px;
+}
+
+/* 输入框 */
+.comment-input-bar input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid #a0c4ff;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    color: #004a99;
+    background-color: #f7fbff;
+}
+
+.comment-input-bar input:focus {
+    border-color: #007acc;
+    box-shadow: 0 0 6px rgba(0, 122, 204, 0.5);
+}
+
+/* 发送按钮 */
+.comment-input-bar button {
+    padding: 10px 16px;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.comment-input-bar button:hover {
+    background-color: #005f99;
+}
+
+/* 空评论提示 */
+.comment-section-empty {
+    text-align: center;
+    padding: 40px 0;
+    color: #99badd;
+    font-size: 14px;
+}
+
+/* 回复提示 */
+.comment-reply-tip {
+    position: absolute;
+    top: -24px;
+    left: 10px;
+    font-size: 13px;
+    color: #5599ff;
+}
+
+/* 取消回复 */
+.comment-cancel-reply {
+    color: #ff4d4f;
+    margin-left: 8px;
+    cursor: pointer;
+    font-weight: bold;
 }

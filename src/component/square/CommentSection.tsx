@@ -3,130 +3,154 @@
  * @author lihao
  * @date 2025/6/1
  */
-import { useState } from 'react';
-import './CommentSection.css';
 
-interface Comment {
-    commentId: string;
-    userName: string;
-    photo: string;
-    commentContent: string;
-    childCommentDto?: Comment[];
+import React, { useEffect, useState } from 'react';
+import './CommentSection.css';
+import {CommentItem, commentToPost, getPostComment} from '../../api/feature/social.ts';
+import {useUser} from "../provider/UserProvider.tsx";
+import avatar from '../../assets/default/avatar.png'
+
+interface Props {
+    postId: string | undefined;
 }
 
-const mockComments: Comment[] = [
-    {
-        commentId: 'c1',
-        userName: '张三',
-        photo: 'https://i.pravatar.cc/40?u=1',
-        commentContent: '这是第一条评论',
-        childCommentDto: [
-            {
-                commentId: 'c1-1',
-                userName: '李四',
-                photo: 'https://i.pravatar.cc/40?u=2',
-                commentContent: '这是回复评论',
-            },
-        ],
-    },
-    {
-        commentId: 'c2',
-        userName: '王五',
-        photo: 'https://i.pravatar.cc/40?u=3',
-        commentContent: '这是第二条评论',
-    },
-];
 
-const CommentSection = () => {
-    const [comments, setComments] = useState<Comment[]>(mockComments);
-    const [replyTarget, setReplyTarget] = useState<{ id: string | null; name: string | null }>({ id: null, name: null });
+const CommentBox: React.FC<{
+    comment: CommentItem;
+    onReplyClick: (comment: CommentItem) => void;
+}> = ({ comment, onReplyClick }) => {
+    const isChild = comment.parentId !== '';
+
+    const displayUserName = isChild
+        ? `${comment.userName} > ${comment.parentName}`
+        : comment.userName;
+
+    return (
+        <div
+            className={`comment-section-item ${isChild ? 'comment-section-child' : ''}`}
+            data-id={comment.commentId}
+            onClick={() => onReplyClick(comment)}
+        >
+            <div className="comment-section-header">
+                <img src={comment.photo || avatar} alt="头像" className="comment-section-avatar" />
+                <div className="comment-section-username">{displayUserName}</div>
+                <div className="comment-section-date">{comment.commentDate?.slice(0, 10)}</div>
+            </div>
+
+            <div className="comment-section-text">{comment.commentContent}</div>
+            {comment.childCommentDto?.map((child) => (
+                <CommentBox key={child.commentId} comment={child} onReplyClick={onReplyClick} />
+            ))}
+        </div>
+    );
+};
+
+const CommentSection: React.FC<Props> = ({ postId }) => {
+    const [comments, setComments] = useState<CommentItem[]>([]);
     const [inputValue, setInputValue] = useState('');
+    const [replyTarget, setReplyTarget] = useState<CommentItem | null>(null);
+    const {user} = useUser();
+    useEffect(() => {
+        if (!postId) return;
+        const getComments = async () => {
+            const data = await getPostComment(postId);
+            setComments(data.data);
+        };
+        getComments();
+    }, [postId]);
 
-    // 模拟发送评论函数（只更新本地状态）
-    const sendComment = () => {
-        if (!inputValue.trim()) return;
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputValue(e.target.value);
+    };
 
-        const newComment: Comment = {
-            commentId: `c${Math.random().toString(36).substr(2, 6)}`,
-            userName: '当前用户',
-            photo: 'https://i.pravatar.cc/40?u=100',
+    const handleSend = async () => {
+        if (!inputValue.trim() || !postId) return;
+
+        const parentId = replyTarget ? replyTarget.commentId : '';
+        const res = await commentToPost(postId, parentId, inputValue.trim());
+
+        const newComment: CommentItem = {
+            commentId: res.data.commentId,
+            parentId: parentId,
+            parentName: replyTarget?.userName || '',
+            topId: res.data.topId,
+            commentDate: new Date().toISOString(),
+            userId: 'currentUserId',
+            userName: user?.name ?? '不挂用户',
+            photo: user?.photo || avatar,
             commentContent: inputValue.trim(),
+            childCommentDto: [],
         };
 
-        if (!replyTarget.id) {
-            // 新评论插入最前面
-            setComments([newComment, ...comments]);
-        } else {
-            // 回复评论，递归插入到对应评论下
-            const addReply = (list: Comment[]): Comment[] => {
-                return list.map((c) => {
-                    if (c.commentId === replyTarget.id) {
-                        const child = c.childCommentDto ? [...c.childCommentDto, newComment] : [newComment];
-                        return { ...c, childCommentDto: child };
-                    }
-                    if (c.childCommentDto) {
-                        return { ...c, childCommentDto: addReply(c.childCommentDto) };
+        setComments(prev => {
+            if (!replyTarget) {
+                return [newComment, ...prev];
+            } else {
+                const topId = replyTarget.topId || replyTarget.commentId;
+                return prev.map(c => {
+                    if (c.commentId === topId) {
+                        return {
+                            ...c,
+                            childCommentDto: [newComment, ...(c.childCommentDto || [])]
+                        };
                     }
                     return c;
                 });
-            };
-            setComments(addReply(comments));
-        }
+            }
+        });
 
         setInputValue('');
-        setReplyTarget({ id: null, name: null });
+        setReplyTarget(null);
     };
 
-    const renderComments = (comments: Comment[], isParent = true) => {
-        return comments.map((comment) => (
-            <div
-                key={comment.commentId}
-                className={isParent ? 'cmt-remark cmt-pare' : 'cmt-remark cmt-rinnerCmmt'}
-            >
-                <div className="cmt-rinnerCmmt_Head">
-                    <img src={comment.photo} className="cmt-remkPersonPic" alt={`${comment.userName}头像`} />
-                    <span>{comment.userName}{!isParent && replyTarget.name ? `▶${replyTarget.name}` : ''}</span>
-                </div>
-                <div
-                    className="cmt-remark-content"
-                    onClick={() => setReplyTarget({ id: comment.commentId, name: comment.userName })}
-                >
-                    <p className="cmt-remark_P">{comment.commentContent}</p>
-                    <p className="cmt-reply-text">回复</p>
-                </div>
-                {comment.childCommentDto && comment.childCommentDto.length > 0 && (
-                    <div className="cmt-children">{renderComments(comment.childCommentDto, false)}</div>
-                )}
-            </div>
-        ));
+    const handleReplyClick = (comment: CommentItem) => {
+        setReplyTarget(comment);
+    };
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault(); // 防止换行或其他默认行为
+            handleSend();
+        }
     };
 
     return (
-        <div className="cmt-container">
-            <div className="cmt-comment-container" id="remkCont">
-                {renderComments(comments)}
+        <div className="comment-section-container">
+            <div className="comment-section-wrapper">
+                {comments.length === 0 ? (
+                    <div className="comment-section-empty">快来抢沙发~</div>
+                ) : (
+                    comments.map(comment => (
+                        <CommentBox
+                            key={comment.commentId}
+                            comment={comment}
+                            onReplyClick={handleReplyClick}
+                        />
+                    ))
+                )}
             </div>
-            <form
-                className="cmt-form"
-                id="form_"
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    sendComment();
-                }}
-            >
+
+            <div className="comment-input-bar">
+                {replyTarget && (
+                    <div className="comment-reply-tip">
+                        回复 @{replyTarget.userName}
+                        <span className="comment-cancel-reply" onClick={() => setReplyTarget(null)}>
+                            取消
+                        </span>
+                    </div>
+                )}
                 <input
-                    id="input_"
                     type="text"
-                    placeholder={replyTarget.name ? `回复：${replyTarget.name}` : '评论该帖子'}
                     value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    onFocus={() => {}}
-                    onBlur={() => {}}
+                    onKeyDown={handleKeyDown}
+                    onChange={handleInputChange}
+                    placeholder="写下你的评论..."
                 />
-                <button type="submit" className="cmt-submit-btn">发送</button>
-            </form>
+                <button onClick={handleSend}>发送</button>
+            </div>
         </div>
     );
 };
 
 export default CommentSection;
+
+

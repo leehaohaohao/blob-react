@@ -1,5 +1,5 @@
 .post-wrapper {
-    display: flex;
+
     margin-left: 10vw;
 }
 
@@ -84,31 +84,52 @@
     text-align: center;
 }
 
-.post-detail-container,
-.post-comment-container {
+.post-detail-container{
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-radius: 25px;
     box-shadow: 0 8px 24px rgba(0, 112, 144, 0.15);
     margin: 10px;
+    width: 60vw;
     min-height: 500px;
     color: #0d3b66;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     transition: box-shadow 0.3s ease;
 }
+.post-comment-container {
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    height: 80vh;
+    overflow:hidden;
 
-.post-detail-container:hover,
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 25px;
+    box-shadow: 0 8px 24px rgba(0, 112, 144, 0.15);
+    padding: 16px;
+    color: #0d3b66;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: box-shadow 0.3s ease;
+    z-index: 999;
+}
+
 .post-comment-container:hover {
     box-shadow: 0 12px 30px rgba(0, 112, 144, 0.3);
 }
 
+.post-detail-container:hover {
+    box-shadow: 0 12px 30px rgba(0, 112, 144, 0.3);
+}
+
 .post-detail-container {
-    width: 70%;
+    width: 65%;
 }
 
 .post-comment-container {
-    width: 30%;
+    width: 25%;
 }
 
 /* 标题和时间部分 */
