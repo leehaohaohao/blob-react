@@ -98,7 +98,6 @@ const Front = ()=>{
                         <span>我 的 文 章</span>
                     </div>
                     {coverUserPost.map((post)=>{
-                        //TODO 点击后跳转至文章详情
                         return (
                             <div className={'front-like'}>
                                 <div className={'front-imgContainer'} onClick={()=>{navigate('/article/content/'+post.postId)}}>
@@ -120,7 +119,7 @@ const Front = ()=>{
                         coverUserLike.map((post)=>{
                             return (
                                 <div className={'front-like'}>
-                                    <div className={'front-imgContainer'}>
+                                    <div className={'front-imgContainer'} onClick={()=>{navigate('/article/content/'+post.postId)}}>
                                         <img className={'front-post-img'} src={post.cover} alt={'头像'}/>
                                         <div className={'front-post-title'}>
                                             {post.title}
@@ -136,10 +135,9 @@ const Front = ()=>{
                         <span>我 的 收 藏</span>
                     </div>
                     {coverUserCollect.map((post)=>{
-                        //TODO 点击后跳转至文章详情
                         return (
                             <div className={'front-like'}>
-                                <div className={'front-imgContainer'}>
+                                <div className={'front-imgContainer'} onClick={()=>{navigate('/article/content/'+post.postId)}}>
                                     <img className={'front-post-img'} src={post.cover} alt={'头像'}/>
                                     <div className={'front-post-title'}>
                                         {post.title}
@@ -157,7 +155,7 @@ const Front = ()=>{
                         <div className={'tag-list'}>
                             {tagsList.length > 0 ? (
                                 tagsList.map((tag, index) => (
-                                    <div className={'tag-box'} key={index} >
+                                    <div className={'tag-box'} key={index} onClick={()=>{navigate('/article/'+tag)}}>
                                         {tag}
                                     </div>
                                 ))):
@@ -182,6 +180,10 @@ const Front = ()=>{
                         <div className={'right-info-container'}>
                             <span>关注数：</span>
                             <span>{user?.concern}</span>
+                        </div>
+                        <div className={'right-info-container'}>
+                            <span>广告位招租</span>
+                            <span>致电：110</span>
                         </div>
                     </div>
                     <div className={'feature-square'}>

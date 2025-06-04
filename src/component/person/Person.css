@@ -1,0 +1,113 @@
+/* Person.css */
+
+.person-page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+}
+
+.person-user-card {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.person-avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 24px;
+}
+
+.person-user-info {
+    flex: 1;
+}
+
+.person-user-info h2 {
+    margin: 0 0 8px;
+    font-size: 22px;
+    color: #007c91;
+}
+
+.person-edit-btn {
+    padding: 8px 16px;
+    background-color: #007c91;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.person-edit-btn:hover {
+    background-color: #005f6a;
+}
+
+.person-user-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    background: #f9f9f9;
+    padding: 12px 0;
+    border-radius: 10px;
+}
+
+.person-stat {
+    font-size: 15px;
+    color: #666;
+}
+.person-stat span {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.person-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+}
+.person-tab-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    padding: 10px 0;
+    cursor: pointer;
+    color: #888;
+    position: relative;
+    transition: color 0.3s;
+}
+.person-tab-btn:hover {
+    color: #007c91;
+}
+.person-tab-btn.active {
+    color: #007c91;
+    font-weight: bold;
+}
+.person-tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background-color: #007c91;
+    border-radius: 2px;
+}
+
+.person-tab-content {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+    min-height: 160px;
+}

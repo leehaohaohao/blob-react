@@ -15,6 +15,8 @@ export interface UserInfoDto {
     post: number;
     selfTag: string;
     status: number;
+    love:number;
+    collect:number;
 }
 export interface OtherInfoDto {
     userInfoDto: UserInfoDto;

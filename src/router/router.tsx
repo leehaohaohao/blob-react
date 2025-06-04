@@ -8,6 +8,7 @@ import Square from "../page/Square.tsx";
 import ArticleHub from "../component/square/ArticleHub.tsx";
 import PublishPost from "../component/home/publish/PublishPost.tsx";
 import PostDetail from "../component/square/PostDetail.tsx";
+import Person from "../component/person/Person.tsx";
 
 const router = createBrowserRouter([
     {
@@ -33,7 +34,15 @@ const router = createBrowserRouter([
             {
                 path:'publish',
                 element:<PublishPost/>
-            }
+            },
+            {
+                path: 'person',
+                element: <Person/>
+            },
+            {
+                path: 'person/:userId',
+                element: <Person/>
+            },
         ]
     },
     {
@@ -53,6 +62,7 @@ const router = createBrowserRouter([
                 element: <PostDetail/>
             }
         ]
-    }
+    },
+
     ])
 export default router;

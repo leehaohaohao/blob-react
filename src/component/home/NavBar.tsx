@@ -37,11 +37,14 @@ const NavBar = () => {
             handleSearch();
         }
     };
+    const handleClick = (tab: string) => {
+        navigate(`/home/person?tab=${tab}`);
+    };
     return (
         <nav className={'nav-bar'}>
             <div className={'logo'}>
                 <img src={logo} alt=""/>
-                <div className={'app'}>blob</div>
+                <div className={'app'}>不挂资料平台</div>
             </div>
 
             <div className={'tab'}>
@@ -103,9 +106,10 @@ const NavBar = () => {
                             </div>
                         </div>
                         <ul className={'menu-list'}>
-                            <li><a>我的喜欢</a></li>
-                            <li><a>我的关注</a></li>
-                            <li><a>我的文章</a></li>
+                            <li><a onClick={() => handleClick('articles')}>我的文章</a></li>
+                            <li><a onClick={() => handleClick('likes')}>我的喜欢</a></li>
+                            <li><a onClick={() => handleClick('collections')}>我的收藏</a></li>
+                            <li><a onClick={() => handleClick('concerns')}>我的关注</a></li>
                         </ul>
                     </div>
 
