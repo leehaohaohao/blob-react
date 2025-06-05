@@ -123,11 +123,14 @@ export const getUserPostList = async (pageNum:string,pageSize:string,otherId:str
     const res = await axiosInstance.post(prefix+'/user/unapproval/post',formData)
     return res.data
 }
-export const getUserLikeOrCollectPostList = async (pageNum:string,pageSize:string,status:string):Promise<ApiResponse<PostItem[]>> =>{
+export const getUserLikeOrCollectPostList = async (pageNum:string,pageSize:string,status:string,otherId:string|null):Promise<ApiResponse<PostItem[]>> =>{
     const formData = new FormData()
     formData.append('pageNum',pageNum);
     formData.append('pageSize',pageSize);
     formData.append('status',status);
+    if(otherId){
+        formData.append('otherId',otherId)
+    }
     const res = await axiosInstance.post(prefix+'/my/like/collect/post',formData)
     return res.data
 }

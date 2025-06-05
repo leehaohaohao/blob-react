@@ -110,6 +110,7 @@ const NavBar = () => {
                             <li><a onClick={() => handleClick('likes')}>我的喜欢</a></li>
                             <li><a onClick={() => handleClick('collections')}>我的收藏</a></li>
                             <li><a onClick={() => handleClick('concerns')}>我的关注</a></li>
+                            <li><a onClick={() => handleClick('fans')}>我的粉丝</a></li>
                         </ul>
                     </div>
 

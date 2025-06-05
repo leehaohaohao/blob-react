@@ -32,3 +32,11 @@ export const updateUserTag = async(selfTag:string): Promise<ApiResponse<UserInfo
     const res = await axiosInstance.post(prefix+'/updateTag', formData);
     return res.data
 }
+export const getOtherInfo = async(otherId:string): Promise<ApiResponse<OtherInfoDto>> =>{
+    const res = await axiosInstance.get(prefix+'/other/info',{
+        params:{
+            otherId
+        }
+    })
+    return res.data
+}

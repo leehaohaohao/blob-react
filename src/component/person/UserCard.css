@@ -1,0 +1,44 @@
+/* UserCard.css */
+.user-card {
+    border: 1px solid #eee;
+    padding: 12px;
+    border-radius: 12px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.user-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 8px;
+}
+.user-info {
+    text-align: center;
+}
+.user-name {
+    font-weight: bold;
+}
+.user-tag {
+    color: #666;
+    font-size: 12px;
+    margin: 4px 0;
+}
+.user-stats span {
+    margin: 0 6px;
+    font-size: 12px;
+    color: #999;
+}
+.follow-status {
+    margin-top: 8px;
+    font-size: 12px;
+}
+.followed {
+    color: green;
+}
+.not-followed {
+    color: red;
+}

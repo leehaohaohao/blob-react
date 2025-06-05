@@ -169,17 +169,23 @@ const Front = ()=>{
                         </div>
                     </div>
                     <div className={'right-info'}>
-                        <div className={'right-info-container'}>
+                        <div className={'right-info-container'} onClick={() => {
+                            navigate('/home/person?tab=articles');
+                        }}>
                             <span>文章数：</span>
                             <span>{user?.post}</span>
                         </div>
-                        <div className={'right-info-container'}>
-                            <span>粉丝数：</span>
-                            <span>{user?.followers}</span>
-                        </div>
-                        <div className={'right-info-container'}>
+                        <div className={'right-info-container'}onClick={() => {
+                            navigate('/home/person?tab=concerns');
+                        }}>
                             <span>关注数：</span>
                             <span>{user?.concern}</span>
+                        </div>
+                        <div className={'right-info-container'}onClick={() => {
+                            navigate('/home/person?tab=fans');
+                        }}>
+                            <span>粉丝数：</span>
+                            <span>{user?.followers}</span>
                         </div>
                         <div className={'right-info-container'}>
                             <span>广告位招租</span>

@@ -47,12 +47,6 @@ const ArticleList: React.FC<ArticleListProps> = ({ currentTag }) => {
         };
     }, [currentTag]);
 
-
-    const handleFollow = (userId: string) => {
-        console.log("关注用户：", userId);
-        // TODO: 发请求改变状态
-    };
-
     // 分配到5列
     const columns: PostItem[][] = Array.from({ length: COLUMN_COUNT }, () => []);
     postList.forEach((post, index) => {
@@ -64,7 +58,7 @@ const ArticleList: React.FC<ArticleListProps> = ({ currentTag }) => {
             {columns.map((colPosts, colIndex) => (
                 <div className="article-column" key={colIndex}>
                     {colPosts.map(post => (
-                        <ArticleCard key={post.postId} post={post} onFollowClick={handleFollow} />
+                        <ArticleCard key={post.postId} post={post}/>
                     ))}
                 </div>
             ))}

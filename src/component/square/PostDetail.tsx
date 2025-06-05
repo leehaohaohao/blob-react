@@ -79,6 +79,7 @@ const PostDetail = () => {
                 <div className="post-detail-author">
                     <img
                         className="author-avatar"
+                        onClick={() => navigate(`/home/person/${postDetailItem?.userId}`)}
                         src={postDetailItem?.photo}
                         alt="作者头像"
                     />

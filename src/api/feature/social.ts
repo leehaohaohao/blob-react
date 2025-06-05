@@ -24,7 +24,7 @@ export interface CommentResponse{
     commentId: string;
 }
 export interface ConcernItem{
-    userInfo:UserInfoDto,
+    userInfoDto:UserInfoDto,
     status:number;
 }
 export const getPostComment = async (postId:string):Promise<ApiResponse<CommentItem[]>> =>{
@@ -47,10 +47,19 @@ export const commentToPost = async (postId:string,parentId:string,commentContent
     const res = await axiosInstance.post(prefix+'/comment',formData)
     return res.data
 }
-export const getConcernList = async (pageNum:string,pageSize:string):Promise<ApiResponse<ConcernItem[]>> =>{
-    const formData = new FormData()
-    formData.append('pageNum',pageNum)
-    formData.append('pageSize',pageSize)
-    const res = await axiosInstance.post(prefix+'/get/concern',formData)
-    return res.data
-}
+export const getConcernList = async (
+    pageNum: string,
+    pageSize: string,
+    status: string,
+    otherId: string|null = null
+): Promise<ApiResponse<ConcernItem[]>> => {
+    const res = await axiosInstance.post(prefix + '/get/concern/follower', {
+        page: {
+            pageNum,
+            pageSize
+        },
+        status,
+        otherId
+    });
+    return res.data;
+};
