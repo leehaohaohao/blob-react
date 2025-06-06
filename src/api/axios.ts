@@ -7,6 +7,7 @@ import axios from 'axios'
 //创建axios实例
 const axiosInstance = axios.create({
     baseURL: 'http://121.40.154.188:9090/blob',
+    //baseURL: 'http://localhost:9090/blob',
     timeout: 10000
 })
 //请求拦截器(添加请求头)

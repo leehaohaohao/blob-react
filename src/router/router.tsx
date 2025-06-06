@@ -9,6 +9,7 @@ import ArticleHub from "../component/square/ArticleHub.tsx";
 import PublishPost from "../component/home/publish/PublishPost.tsx";
 import PostDetail from "../component/square/PostDetail.tsx";
 import Person from "../component/person/Person.tsx";
+import NewTalk from "../component/talk/NewTalk.tsx";
 
 const router = createBrowserRouter([
     {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
                 path: 'person/:userId',
                 element: <Person/>
             },
+            {
+                path:'talk',
+                element: <NewTalk/>
+            }
         ]
     },
     {

@@ -1,0 +1,302 @@
+.talk-container {
+    width: 100%;
+    justify-content: center;
+}
+
+.talk-banner {
+    margin: auto;
+    width: 80vw;
+    height: 50px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.talk-banner-content {
+    font-size: 20px;
+    position: absolute;
+    white-space: nowrap;
+    animation: scrollBanner 14s linear infinite;
+}
+
+@keyframes scrollBanner {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.talk-area-container {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.talk-area {
+    display: flex;
+    width: 80vw;
+}
+
+.talk-left,
+.talk-right {
+    height: 70vh;
+    margin: 10px;
+    border-radius: 25px;
+    border: 1px solid #dcdcdc; /* 替换红色 */
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.talk-left:hover,
+.talk-right:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: #90caf9;
+}
+
+.talk-left {
+    flex: 3;
+}
+
+.talk-right {
+    flex: 1;
+}
+
+.talk-room-head {
+    width: 100%;
+    height: 10%;
+    border-radius: 25px 25px 0 0;
+    display: flex;
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    justify-content: space-between;
+    align-items: center;
+}
+
+.talk-room-title {
+    font-size: 24px;
+    margin-left: 20px;
+}
+
+.talk-room-id {
+    font-size: 24px;
+    color: #333;
+    margin-right: 20px;
+}
+
+.talk-room-content {
+    width: 100%;
+    height: 80%;
+    border: 1px solid #e0e0e0; /* 替换红色 */
+    overflow-y: auto;
+}
+
+.talk-room-input {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+}
+
+.talk-room-input input {
+    width: 90%;
+    height: 75%;
+    margin: 10px;
+    border-radius: 18px;
+    box-sizing: border-box;
+    font-size: 18px;
+    padding-left: 5px;
+    border: 1px solid #490303;
+}
+
+.talk-room-input button {
+    width: 10%;
+    margin: 10px;
+    height: 75%;
+    border: none;
+    border-radius: 18px;
+    background: #bbdefb;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.talk-room-input button:hover {
+    background: #90caf9;
+}
+
+.talk-group-list-head {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.talk-group-list-head input {
+    width: 70%;
+    height: 70%;
+    border-radius: 15px 0 0 15px;
+    box-sizing: border-box;
+    border: 1px solid #490303;
+}
+
+.talk-group-list-head button {
+    background: #bbdefb;
+    width: 20%;
+    height: 70%;
+    border: none;
+    border-radius: 0 15px 15px 0;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.talk-group-list-head button:hover {
+    background: #90caf9;
+}
+
+.talk-group-list {
+    height: 65%;
+    overflow-y: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* 胶囊式群组项 */
+.talk-group-chip {
+    display: flex;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 8px 12px;
+    border-radius: 9999px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.talk-group-chip:hover {
+    background-color: #e3f2fd;
+}
+
+.talk-group-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-right: 10px;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+.talk-group-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.talk-group-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.talk-group-gid {
+    font-size: 13px;
+    color: #777;
+}
+
+.talk-group-my {
+    width: 100%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.talk-group-my-head {
+    width: 90%;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.talk-group-my button {
+    width: 90%;
+    height: 35%;
+    margin-top: 10px;
+    padding: 6px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 15px;
+    background: #bbdefb;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.2s ease;
+}
+.talk-group-my button:hover {
+    background: #90caf9;
+}
+.talk-placeholder {
+    width: 100%;
+    height: 100%;
+    font-size: 18px;
+    color: #777;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 群组选中状态 */
+.talk-group-chip.selected {
+    background-color: #90caf9;
+    box-shadow: 0 0 0 2px #64b5f6;
+}
+/* 我的群组的群组胶囊单独样式 */
+.talk-my-group-chip {
+    margin-top: 5px ;
+    display: flex;
+    align-items: center;
+    background-color: #bbdefb;
+    padding: 5px 8px;
+    border-radius: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(100,149,237,0.4);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    width: 90%;
+}
+
+.talk-my-group-chip:hover {
+    background-color: #e3f2fd;
+}
+
+.talk-my-group-chip.selected {
+    background-color: #90caf9;
+    box-shadow: 0 0 0 2px #64b5f6;
+}
+
+.talk-my-group-chip .talk-group-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 12px;
+    object-fit: cover;
+}
+
+.talk-my-group-chip .talk-group-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.talk-my-group-chip .talk-group-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a237e;
+}
+
+.talk-my-group-chip .talk-group-gid {
+    font-size: 14px;
+    color: #3f51b5;
+}

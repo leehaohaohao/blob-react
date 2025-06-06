@@ -60,7 +60,9 @@ const NavBar = () => {
                     <p className={'tab-item-text text'}>文章</p>
                     <img src={article} className={'tab-item-icon icon'} alt={'文章'}/>
                 </div>
-                <div className={'tab-item animation-container'}>
+                <div className={'tab-item animation-container'} onClick={()=>{
+                    navigate('/home/talk');
+                }}>
                     <p className={'tab-item-text text'}>聊天室</p>
                     <img src={chatroom} className={'tab-item-icon icon'} alt={'聊天室'}/>
                 </div>

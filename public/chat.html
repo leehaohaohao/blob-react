@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>不挂交流室</title>
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+<div id="mainContainer">
+    <div id="banner">
+        <div id="bannerContent">
+            欢迎来到不挂科交流室！🎓 请遵守以下规则，保持社区和谐：尊重他人：请勿发布侮辱、歧视或攻击性言论。合法内容：请勿发布任何违法、违规或侵权内容。保护隐私：请勿泄露他人的个人信息。
+        </div>
+    </div>
+    <div id="contentContainer">
+        <div id="left">
+            <div id="info">
+                <div id="groupName">
+                    暂无群聊
+                </div>
+                <div id="groupId">
+                    GID: 空
+                </div>
+            </div>
+            <div id="chatContent">
+            </div>
+            <div id="input">
+                <input type="text" id="messageInput" placeholder="输入消息..." />
+                <button id="sendButton">发送</button>
+            </div>
+        </div>
+        <div id="right">
+            <div id="search">
+                <input type="text" id="searchInput" placeholder="输入GID搜索群组..." />
+                <button id="searchButton" type="button" onclick="searchGroupById()">搜索</button>
+            </div>
+            <div id="groupList">
+
+            </div>
+            <span class="text">我的群组</span>
+            <div class="partition"></div>
+            <div id="myGroup">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="createGroupModal" class="modal">
+    <div class="modal-content">
+        <span class="close">×</span>
+        <h2>创建群组</h2>
+        <form id="createGroupForm">
+            <div class="input-group">
+                <label for="name">群组名称:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="input-group">
+                <label for="avatar">群组封面:</label>
+                <div class="custom-file-upload">
+                    <label for="avatar">选择图片</label>
+                    <input type="file" id="avatar" name="avatar" accept="image/*">
+                </div>
+            </div>
+            <div class="input-group">
+                <img id="preview" src="http://localhost:9090/blob/img/group.png" alt="预览图片" class="preview-image">
+            </div>
+            <button type="submit">创建</button>
+        </form>
+    </div>
+</div>
+</body>
+    <script src="webSocket.js"></script>
+    <script src="chat.js"></script>
+</html>
