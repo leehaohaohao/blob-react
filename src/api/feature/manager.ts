@@ -6,6 +6,7 @@
 import axiosInstance, {ApiResponse} from "../axios.ts";
 import {PostItem, TagItem} from "./forum.ts";
 import {UserInfoDto} from "./user.ts";
+import {GroupDto} from "./group.ts";
 const prefix:string = '/back'
 export interface NumData{
     userNum:number,
@@ -77,7 +78,30 @@ export const updatePerson = async (params: {
     if (params.gender !== undefined) formData.append('gender', params.gender);
     if (params.status !== undefined) formData.append('status', params.status);
     if (params.file) formData.append('file', params.file);
-
     const res = await axiosInstance.post(prefix + '/update/person', formData);
     return res.data;
 };
+
+export const getGroupList = async (pageNum:string,pageSize:string,status:string) : Promise<ApiResponse<GroupDto[]>> => {
+    const formData = new FormData()
+    formData.append('pageNum',pageNum);
+    formData.append('pageSize',pageSize);
+    formData.append('status',status);
+    const res = await axiosInstance.post(prefix+'/group/list',formData)
+    return res.data
+}
+export const updateGroup = async (params: {
+    id: string;
+    name?: string;
+    status?: string | number;
+    file?: File | null;
+}): Promise<ApiResponse<unknown>> => {
+    const formData = new FormData();
+    formData.append("id", params.id);
+    if (params.name !== undefined) formData.append("name", params.name);
+    if (params.status !== undefined) formData.append("status", params.status.toString());
+    if (params.file) formData.append("file", params.file);
+    const res = await axiosInstance.post(prefix + "/group/update", formData);
+    return res.data;
+};
+

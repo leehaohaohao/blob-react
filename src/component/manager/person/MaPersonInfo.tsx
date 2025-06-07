@@ -3,30 +3,6 @@
  * @author lihao
  * @date 2025/6/7
  */
-/*
-import './MaPersonInfo.css'
-const MaPersonInfo = () => {
-    return (
-        <div className="ma-person-info-container" style={{ height: '100%', width: '100%' }}>
-            <iframe
-                src="/person.html"
-                title="用户管理"
-                style={{
-                    border: 'none',
-                    width: '100%',
-                    height: '100vh',
-                }}
-                scrolling="no"
-            />
-        </div>
-    )
-};
-export default MaPersonInfo;*/
-/**
- * @description 用户管理页面 React 重构版
- * @author li
- * @date 2025/6/7
- */
 import React, { useEffect, useState } from 'react';
 import './MaPersonInfo.css';
 import {getUserList, updatePerson} from "../../../api/feature/manager.ts";

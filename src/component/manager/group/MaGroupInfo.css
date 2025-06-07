@@ -1,0 +1,203 @@
+:root {
+    --ma-color-primary: #3b82f6;
+    --ma-color-bg: #f9fafb;
+    --ma-color-border: #e5e7eb;
+    --ma-radius: 6px;
+    --ma-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.ma-group-wrapper {
+    padding: 24px;
+    background-color: var(--ma-color-bg);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    height: 100%;
+    width: 100%;
+}
+
+.ma-group-table-container {
+    background: white;
+    border-radius: var(--ma-radius);
+    box-shadow: var(--ma-shadow);
+    overflow: hidden;
+}
+
+.ma-group-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.ma-group-table thead {
+    background-color: #f3f4f6;
+}
+
+.ma-group-table th,
+.ma-group-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--ma-color-border);
+    text-align: center;
+}
+
+.ma-group-table tbody tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+
+.ma-group-table tbody tr:hover {
+    background-color: #e0f2fe;
+}
+
+.ma-group-table button {
+    background-color: var(--ma-color-primary);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: var(--ma-radius);
+    cursor: pointer;
+    font-size: 12px;
+    margin: 0 4px;
+    transition: background 0.3s;
+}
+
+.ma-group-table button:hover {
+    background-color: #2563eb;
+}
+
+/* Pagination */
+.ma-group-pagination {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 12px 0;
+}
+
+.ma-group-pagination button {
+    background-color: white;
+    border: 1px solid var(--ma-color-border);
+    padding: 6px 12px;
+    border-radius: var(--ma-radius);
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.ma-group-pagination button:hover {
+    background-color: var(--ma-color-primary);
+    color: white;
+    border-color: var(--ma-color-primary);
+}
+
+.ma-group-pagination button:disabled {
+    background-color: #e5e7eb;
+    color: #9ca3af;
+    cursor: not-allowed;
+}
+
+/* Toggle switch */
+.ma-group-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.ma-group-switch {
+    width: 50px;
+    height: 24px;
+    background-color: #d1d5db;
+    border-radius: 999px;
+    position: relative;
+    transition: background-color 0.3s;
+}
+
+.ma-group-switch.active {
+    background-color: #10b981;
+}
+
+.ma-group-knob {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 999px;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: left 0.3s;
+}
+
+.ma-group-switch.active .ma-group-knob {
+    left: 28px;
+}
+
+/* Modal */
+.ma-group-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+}
+
+.ma-group-modal-content {
+    background: white;
+    padding: 24px;
+    border-radius: 10px;
+    min-width: 400px;
+    position: relative;
+    box-shadow: var(--ma-shadow);
+}
+
+.ma-group-close {
+    position: absolute;
+    right: 16px;
+    top: 12px;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.ma-group-input-group {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ma-group-input-group label {
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #374151;
+}
+
+.ma-group-input-group input[type="text"],
+.ma-group-input-group input[type="file"] {
+    padding: 8px;
+    border: 1px solid var(--ma-color-border);
+    border-radius: var(--ma-radius);
+    font-size: 14px;
+}
+
+.ma-group-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 10px;
+    border: 2px solid #ccc;
+}
+
+.ma-group-modal-content input[type="submit"] {
+    background-color: var(--ma-color-primary);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: var(--ma-radius);
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 12px;
+}

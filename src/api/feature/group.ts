@@ -13,6 +13,15 @@ export interface GroupItem{
     time: string;
     status: number;
 }
+export interface GroupDto{
+    id: string;
+    userId: string;
+    avatar: string;
+    name: string;
+    time: string;
+    status: number;
+    userName: string;
+}
 export interface GroupCommentItem{
     ownerId: string;
     groupId: string;
