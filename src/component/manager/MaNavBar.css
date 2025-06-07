@@ -1,0 +1,40 @@
+.ma-navbar {
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(270deg, #4facfe, #00f2fe, #4facfe);
+    background-size: 600% 600%;
+    animation: ma-navbar-flow 8s ease infinite;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+@keyframes ma-navbar-flow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.ma-navbar-left {
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.ma-navbar-right {
+    font-size: 16px;
+    font-weight: normal;
+}

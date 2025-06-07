@@ -1,0 +1,142 @@
+/* MaWebInfo.css */
+.ma-web-info-container {
+    height: 100%;
+    width: 100%;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    box-sizing: border-box;
+    padding: 16px;
+}
+
+.ma-web-info-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.ma-web-info-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* 图表容器 */
+.ma-web-info-chart-container {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.ma-web-info-chart-box {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 16px;
+    flex: 1 1 300px;
+    max-width: 600px;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.05);
+}
+
+/* 图表区域 */
+.ma-web-info-chart {
+    display: flex;
+    gap: 24px;
+    justify-content: space-between;
+}
+
+.ma-web-info-left-box,
+.ma-web-info-right-box {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 16px;
+    flex: 1;
+    max-width: 580px;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.ma-web-info-title p {
+    margin: 0 0 12px;
+    font-weight: 600;
+    font-size: 18px;
+    border-bottom: 2px solid #4caf50;
+    padding-bottom: 6px;
+    color: #4caf50;
+}
+
+/* 热门话题和热门文章列表 */
+.ma-web-info-l-container,
+.ma-web-info-r-container {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+/* 话题块 */
+.ma-web-info-text,
+.ma-web-info-post {
+    margin-bottom: 10px;
+    font-size: 15px;
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
+    padding: 6px 8px;
+}
+
+.ma-web-info-text a,
+.ma-web-info-post a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.ma-web-info-text:hover,
+.ma-web-info-post:hover {
+    background-color: #e8f5e9;
+}
+
+.ma-web-info-text a:hover,
+.ma-web-info-post a:hover {
+    color: #2e7d32;
+    text-decoration: underline;
+}
+
+/* 滚动条美化 */
+.ma-web-info-l-container::-webkit-scrollbar,
+.ma-web-info-r-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.ma-web-info-l-container::-webkit-scrollbar-thumb,
+.ma-web-info-r-container::-webkit-scrollbar-thumb {
+    background-color: rgba(76, 175, 80, 0.5);
+    border-radius: 4px;
+}
+
+.ma-web-info-l-container::-webkit-scrollbar-track,
+.ma-web-info-r-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .ma-web-info-chart-container,
+    .ma-web-info-chart {
+        flex-direction: column;
+    }
+    .ma-web-info-chart-box,
+    .ma-web-info-left-box,
+    .ma-web-info-right-box {
+        max-width: 100%;
+    }
+}

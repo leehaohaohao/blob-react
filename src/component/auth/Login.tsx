@@ -30,6 +30,9 @@ const Login = ({setLogging}:LoggingProps) => {
             <input className={'log-input'} type={"password"} placeholder={"密码"} value={password} onChange={(e)=>setPassword(e.target.value)}/>
             <button className={'log-button'}>登录</button>
             <p className={"link"} onClick={()=>setLogging(false)}>还没账号？</p>
+            <p className={"link"} onClick={()=>{
+                navigate("/mlogin");
+            }}>管理员？</p>
         </form>
     )
 }

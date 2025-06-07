@@ -1,4 +1,5 @@
-let baseURL = 'http://121.40.154.188:9090/blob/';
+let uri = '121.40.154.188';
+let baseURL = 'http://'+uri+':9090/blob/';
 let userInfo = baseURL + 'user/info';
 let myGroup = baseURL + 'group/select/my';
 let groupList = baseURL+'group/select/list';

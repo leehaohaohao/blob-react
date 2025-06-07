@@ -1,0 +1,226 @@
+:root {
+    --ma-color-primary: #3b82f6;
+    --ma-color-bg: #f9fafb;
+    --ma-color-border: #e5e7eb;
+    --ma-radius: 6px;
+    --ma-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.ma-person-wrapper {
+    padding: 24px;
+    background-color: var(--ma-color-bg);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ma-person-table-container {
+    background: white;
+    border-radius: var(--ma-radius);
+    box-shadow: var(--ma-shadow);
+    overflow: hidden;
+}
+
+.ma-person-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.ma-person-table thead {
+    background-color: #f3f4f6;
+}
+
+.ma-person-table th,
+.ma-person-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--ma-color-border);
+    text-align: center;
+}
+
+.ma-person-table tbody tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+
+.ma-person-table tbody tr:hover {
+    background-color: #e0f2fe;
+}
+
+.ma-person-table button {
+    background-color: var(--ma-color-primary);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: var(--ma-radius);
+    cursor: pointer;
+    font-size: 12px;
+    margin: 0 4px;
+    transition: background 0.3s;
+}
+
+.ma-person-table button:hover {
+    background-color: #2563eb;
+}
+
+/* Pagination */
+.ma-person-pagination {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 12px 0;
+}
+
+.ma-person-pagination button {
+    background-color: white;
+    border: 1px solid var(--ma-color-border);
+    padding: 6px 12px;
+    border-radius: var(--ma-radius);
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.ma-person-pagination button:hover {
+    background-color: var(--ma-color-primary);
+    color: white;
+    border-color: var(--ma-color-primary);
+}
+
+.ma-person-pagination button:disabled {
+    background-color: #e5e7eb;
+    color: #9ca3af;
+    cursor: not-allowed;
+}
+
+/* Toggle switch */
+.ma-person-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.ma-person-switch {
+    width: 50px;
+    height: 24px;
+    background-color: #d1d5db;
+    border-radius: 999px;
+    position: relative;
+    transition: background-color 0.3s;
+}
+
+.ma-person-switch.active {
+    background-color: #10b981;
+}
+
+.ma-person-knob {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 999px;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: left 0.3s;
+}
+
+.ma-person-switch.active .ma-person-knob {
+    left: 28px;
+}
+
+/* Modal */
+.ma-person-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+}
+
+.ma-person-modal-content {
+    background: white;
+    padding: 24px;
+    border-radius: 10px;
+    min-width: 400px;
+    position: relative;
+    box-shadow: var(--ma-shadow);
+}
+
+.ma-person-close {
+    position: absolute;
+    right: 16px;
+    top: 12px;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.ma-person-input-group {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ma-person-input-group label {
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #374151;
+}
+
+.ma-person-input-group input[type="text"],
+.ma-person-input-group input[type="file"] {
+    padding: 8px;
+    border: 1px solid var(--ma-color-border);
+    border-radius: var(--ma-radius);
+    font-size: 14px;
+}
+
+.ma-person-input-group input[type="radio"] {
+    margin-right: 6px;
+}
+
+.ma-person-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 10px;
+    border: 2px solid #ccc;
+}
+
+.ma-person-modal-content input[type="submit"] {
+    background-color: var(--ma-color-primary);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: var(--ma-radius);
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 12px;
+}
+/* 修改性别选择为横向展示 */
+.ma-person-gender-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 0;
+}
+
+.ma-person-gender-group label {
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.ma-person-gender-group input[type="radio"] {
+    margin-right: 6px;
+    cursor: pointer;
+}
+

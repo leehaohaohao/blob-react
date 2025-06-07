@@ -10,6 +10,14 @@ import PublishPost from "../component/home/publish/PublishPost.tsx";
 import PostDetail from "../component/square/PostDetail.tsx";
 import Person from "../component/person/Person.tsx";
 import NewTalk from "../component/talk/NewTalk.tsx";
+import Manager from "../page/Manager.tsx";
+import MaApiInfo from "../component/manager/api/MaApiInfo.tsx";
+import MaPersonInfo from "../component/manager/person/MaPersonInfo.tsx";
+import MaPost from "../component/manager/post/MaPost.tsx";
+import MaGroupInfo from "../component/manager/group/MaGroupInfo.tsx";
+import MaWebInfo from "../component/manager/info/MaWebInfo.tsx";
+import MaFeedback from "../component/manager/feedback/MaFeedback.tsx";
+import MLogin from "../component/auth/MLogin.tsx";
 
 const router = createBrowserRouter([
     {
@@ -68,6 +76,40 @@ const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path: '/mlogin',
+        element: <MLogin/>
+    },
+    {
+        path: '/manager',
+        element: <Manager/>,
+        children:[
+            {
+                path:'',
+                element: <MaWebInfo/>
+            },
+            {
+                path:'api',
+                element: <MaApiInfo/>
+            },
+            {
+                path:'person',
+                element: <MaPersonInfo/>
+            },
+            {
+                path:'post',
+                element: <MaPost/>
+            },
+            {
+                path:'group',
+                element: <MaGroupInfo/>
+            },
+            {
+                path:'feedback',
+                element: <MaFeedback/>
+            },
+        ]
+    }
 
     ])
 export default router;

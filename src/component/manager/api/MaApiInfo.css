@@ -1,0 +1,84 @@
+.ma-api-info-container {
+    height: 100%;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #fafafa;
+    box-sizing: border-box;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.ma-api-info-main {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+    overflow: hidden;
+}
+
+.ma-api-info-content {
+    display: flex;
+    height: 100%;
+    padding: 12px;
+    gap: 16px;
+}
+
+/* 左侧控制器列表 */
+.ma-api-info-controller-list {
+    width: 180px;
+    background: #f0f0f0;
+    border-radius: 6px;
+    overflow-y: auto;
+    box-shadow: inset 0 0 8px rgb(0 0 0 / 0.05);
+    user-select: none;
+}
+
+.ma-api-info-list-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.2s ease;
+}
+
+.ma-api-info-list-item:hover {
+    background-color: #d9f0f0;
+}
+
+.ma-api-info-list-item.active {
+    background-color: #4caf50;
+    color: white;
+    font-weight: 600;
+}
+
+/* 右侧图表容器 */
+.ma-api-info-chart-container {
+    flex: 1;
+    background: #fff;
+    border-radius: 6px;
+    padding: 12px 16px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.05);
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    min-height: 400px;
+}
+
+.ma-api-info-chart-container h2 {
+    margin: 0 0 12px;
+    font-weight: 700;
+    color: #4caf50;
+    user-select: none;
+}
+
+.ma-api-info-chart-container canvas {
+    flex: 1;
+    /* 避免canvas默认大小太小 */
+    max-height: 100%;
+    max-width: 100%;
+}

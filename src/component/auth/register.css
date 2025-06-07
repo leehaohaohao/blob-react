@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
-    width: 50%;
+    width: 53%;
     height: 7%;
 }
 .code input,.code button{
@@ -11,10 +11,28 @@
     margin: 0;
 }
 .code input{
+    border-radius: 30px;
+    margin: 10px;
+    border: 2px #ffffff solid;
+    box-sizing: border-box;
+    font-size: 15px;
+    outline: none;
     flex: 2;
 }
 .code button{
     flex: 1;
+    border: none;
+    background-color: #4facfe;
+    color: #ffffff;
+    border-radius: 30px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    outline: none;
+}
+.code button:hover{
+    background-color: #ffffff;
+    color: #4facfe;
 }
 .link{
     margin: 0;

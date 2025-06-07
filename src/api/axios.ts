@@ -23,6 +23,7 @@ axiosInstance.interceptors.request.use(
         return Promise.reject(error)
     }
 )
+
 export default axiosInstance
 export interface ApiResponse<T> {
     success: boolean;

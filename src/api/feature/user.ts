@@ -8,6 +8,9 @@ const prefix:string = '/user'
 export interface UserInfoDto {
     userId: string;
     name: string;
+    email:string;
+    telephone:string;
+    lastLoginTime:string;
     gender: number;
     photo: string;
     followers: number;
