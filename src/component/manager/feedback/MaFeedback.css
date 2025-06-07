@@ -1,0 +1,58 @@
+:root {
+    --ma-color-primary: #3b82f6;
+    --ma-color-bg: #f9fafb;
+    --ma-color-border: #e5e7eb;
+    --ma-radius: 6px;
+    --ma-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* 外层容器 */
+.ma-feedback-wrapper {
+    padding: 24px;
+    background-color: var(--ma-color-bg);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    height: 100%;
+    width: 100%;
+}
+
+/* 表格容器用你之前的样式 */
+.ma-group-table-container {
+    background: white;
+    border-radius: var(--ma-radius);
+    box-shadow: var(--ma-shadow);
+    overflow: hidden;
+}
+
+/* 表格样式复用你之前给的ma-group-table，按需覆盖 */
+/* 如果你已经全局导入了之前的表格样式，这里可以空着 */
+
+.ma-feedback-pagination {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 12px 0;
+}
+
+.ma-feedback-page-button {
+    background-color: white;
+    border: 1px solid var(--ma-color-border);
+    padding: 6px 12px;
+    border-radius: var(--ma-radius);
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.ma-feedback-page-button:hover:not(:disabled) {
+    background-color: var(--ma-color-primary);
+    color: white;
+    border-color: var(--ma-color-primary);
+}
+
+.ma-feedback-page-button:disabled {
+    background-color: #e5e7eb;
+    color: #9ca3af;
+    cursor: not-allowed;
+}
