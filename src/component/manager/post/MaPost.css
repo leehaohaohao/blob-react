@@ -1,0 +1,96 @@
+:root {
+    --ma-color-primary: #3b82f6;
+    --ma-color-bg: #f9fafb;
+    --ma-color-border: #e5e7eb;
+    --ma-radius: 6px;
+    --ma-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.ma-post-wrapper {
+    padding: 24px;
+    background-color: var(--ma-color-bg);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    height: 100%;
+    width: 100%;
+}
+
+.ma-post-table-container {
+    background: white;
+    border-radius: var(--ma-radius);
+    box-shadow: var(--ma-shadow);
+    overflow: hidden;
+}
+
+.ma-post-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.ma-post-table thead {
+    background-color: #f3f4f6;
+}
+
+.ma-post-table th,
+.ma-post-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--ma-color-border);
+    text-align: center;
+    color: #374151; /* 深灰色文字 */
+}
+
+.ma-post-table tbody tr:nth-child(even) {
+    background-color: var(--ma-color-bg);
+}
+
+.ma-post-table tbody tr:hover {
+    background-color: #dbeafe; /* 更柔和的蓝色背景，和主色呼应 */
+}
+
+.ma-post-table button {
+    background-color: var(--ma-color-primary);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: var(--ma-radius);
+    cursor: pointer;
+    font-size: 12px;
+    margin: 0 4px;
+    transition: background 0.3s;
+}
+
+.ma-post-table button:hover {
+    background-color: #2563eb; /* 主色深色hover */
+}
+
+/* Pagination */
+.ma-post-pagination {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 12px 0;
+}
+
+.ma-post-pagination button {
+    background-color: white;
+    border: 1px solid var(--ma-color-border);
+    padding: 6px 12px;
+    border-radius: var(--ma-radius);
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.ma-post-pagination button:hover {
+    background-color: var(--ma-color-primary);
+    color: white;
+    border-color: var(--ma-color-primary);
+}
+
+.ma-post-pagination button:disabled {
+    background-color: #e5e7eb;
+    color: #9ca3af;
+    cursor: not-allowed;
+}
