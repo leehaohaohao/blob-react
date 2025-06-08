@@ -54,6 +54,7 @@ export interface PostDetailItem{
     postTime:string,
     isLove:boolean,
     isCollect: boolean,
+    cover:string,
 }
 export const getUserPost = async(pageNum:string,pageSize:string,sort:string):Promise<ApiResponse<PostItem[]>> =>{
     const formData = new FormData()
@@ -142,5 +143,25 @@ export const likeOrCollectPost = async (postId:string,status:string,type:string)
     formData.append('status',status);
     formData.append('type',type);
     const res = await axiosInstance.post(prefix+'/love/collect',formData)
+    return res.data
+}
+export const getApprovalList = async (pageNum:string,pageSize:string):Promise<ApiResponse<PostItem[]>> =>{
+    const formData = new FormData()
+    formData.append('pageNum',pageNum);
+    formData.append('pageSize',pageSize);
+    const res = await axiosInstance.post(prefix+'/approval/list',formData)
+    return res.data
+}
+export const approvalPost = async (postId:string,status:string):Promise<ApiResponse<string>> =>{
+    const formData = new FormData()
+    formData.append('postId',postId);
+    formData.append('postStatus',status);
+    const res = await axiosInstance.post(prefix+'/approval/post',formData)
+    return res.data
+}
+export const getApprovalPostDetail = async (postId:string):Promise<ApiResponse<PostDetailItem>> =>{
+    const  formData = new FormData();
+    formData.append('postId',postId);
+    const res = await axiosInstance.post(prefix+'/id/approval/post',formData);
     return res.data
 }

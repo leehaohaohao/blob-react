@@ -326,7 +326,7 @@ document.getElementById("avatar").addEventListener("change", function(event) {
     if (file) {
         reader.readAsDataURL(file);
     } else {
-        preview.src = "http://localhost:9090/blob/img/group.png";
+        preview.src = "group.png";
     }
 });
 async function add2Group(groupId) {

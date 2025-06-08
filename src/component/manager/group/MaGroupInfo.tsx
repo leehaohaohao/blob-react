@@ -7,6 +7,7 @@ import { useState, useEffect, useRef, ChangeEvent, FormEvent } from "react";
 import "./MaGroupInfo.css";
 import {getGroupList, updateGroup} from "../../../api/feature/manager.ts";
 import {GroupDto} from "../../../api/feature/group.ts";
+import avatar from "../../../../public/defAva.png"
 const MaGroupInfo = () => {
     const [groups, setGroups] = useState<GroupDto[]>([]);
     const [pageNum, setPageNum] = useState(1);
@@ -15,7 +16,7 @@ const MaGroupInfo = () => {
     const [loading, setLoading] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
     const [editGroup, setEditGroup] = useState<GroupDto | null>(null);
-    const [newAvatarPreview, setNewAvatarPreview] = useState<string>("http://localhost:9090/blob/img/defAva.png");
+    const [newAvatarPreview, setNewAvatarPreview] = useState<string>(avatar);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -42,7 +43,7 @@ const MaGroupInfo = () => {
     const closeModal = () => {
         setModalOpen(false);
         setEditGroup(null);
-        setNewAvatarPreview("http://localhost:9090/blob/img/defAva.png");
+        setNewAvatarPreview(avatar);
         if (fileInputRef.current) fileInputRef.current.value = "";
     };
     // 切换状态开关

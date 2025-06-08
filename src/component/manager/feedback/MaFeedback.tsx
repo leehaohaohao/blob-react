@@ -5,9 +5,10 @@
  */
 import { useEffect, useState } from "react";
 import "./MaFeedback.css";
-import {ErrorItem, getErrorItemList, updateFeedbackStatus} from "../../../api/feature/feedback.ts";
-import {useToast} from "../../provider/ToastContext.tsx";
-const pageSize = 4;
+import { ErrorItem, getErrorItemList, updateFeedbackStatus } from "../../../api/feature/feedback.ts";
+import { useToast } from "../../provider/ToastContext.tsx";
+
+const pageSize = 6;
 
 const MaFeedback = () => {
     const [feedbackList, setFeedbackList] = useState<ErrorItem[]>([]);
@@ -15,35 +16,41 @@ const MaFeedback = () => {
     const [loading, setLoading] = useState(false);
     const [disablePrev, setDisablePrev] = useState(true);
     const [disableNext, setDisableNext] = useState(false);
-    const {showToast} = useToast();
-    const fetchFeedback = async (page: number) => {
+    const { showToast } = useToast();
+
+    const fetchFeedback = async (page: number, onSuccess?: () => void) => {
         setLoading(true);
         try {
-            const data = await getErrorItemList(pageNum.toString(), pageSize.toString());
-            setFeedbackList(data.data);
-            setDisablePrev(page === 1);
-            setDisableNext(data.data.length < pageSize);
+            const data = await getErrorItemList(page.toString(), pageSize.toString());
+            if (data.success) {
+                setFeedbackList(data.data);
+                setDisablePrev(page === 1);
+                setDisableNext(data.data.length < pageSize);
+                if (onSuccess) onSuccess(); // 仅成功时触发页码更新
+            } else {
+                showToast("获取失败", "error");
+            }
         } catch (error) {
             console.error(error);
-            showToast("请求失败，请重试",'error');
+            showToast("请求失败，请重试", "error");
         }
         setLoading(false);
     };
 
+    // 初始化加载第一页
     useEffect(() => {
-        fetchFeedback(pageNum);
-    }, [pageNum]);
+        fetchFeedback(1, () => setPageNum(1));
+    }, []);
 
-    // 集成更新接口
     const markAsCompleted = async (feedbackId: number | string) => {
         if (!window.confirm("确定将此反馈标记为完成吗？")) {
             return;
         }
         try {
-            const res = await updateFeedbackStatus({ feedbackId, status: "1" }); // 这里 status 可根据后台要求替换
+            const res = await updateFeedbackStatus({ feedbackId, status: "1" });
             if (res.success) {
                 showToast("更新成功", "success");
-                fetchFeedback(pageNum);
+                fetchFeedback(pageNum); // 重新加载当前页
             } else {
                 showToast(res.message || "更新失败", "error");
             }
@@ -54,15 +61,19 @@ const MaFeedback = () => {
     };
 
     const goToFirstPage = () => {
-        setPageNum(1);
+        fetchFeedback(1, () => setPageNum(1));
     };
 
     const prevPage = () => {
-        if (pageNum > 1) setPageNum(pageNum - 1);
+        if (pageNum > 1) {
+            const newPage = pageNum - 1;
+            fetchFeedback(newPage, () => setPageNum(newPage));
+        }
     };
 
     const nextPage = () => {
-        setPageNum(pageNum + 1);
+        const newPage = pageNum + 1;
+        fetchFeedback(newPage, () => setPageNum(newPage));
     };
 
     return (
@@ -118,7 +129,11 @@ const MaFeedback = () => {
                 </table>
             </div>
             <div className="ma-feedback-pagination">
-                <button className="ma-feedback-page-button" onClick={goToFirstPage} disabled={pageNum === 1}>
+                <button
+                    className="ma-feedback-page-button"
+                    onClick={goToFirstPage}
+                    disabled={pageNum === 1}
+                >
                     回到第一页
                 </button>
                 <button

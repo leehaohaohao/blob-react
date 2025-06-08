@@ -3,50 +3,19 @@
  * @author lihao
  * @date 2025/6/7
  */
-/*
-import './MaPost.css'
-const MaPost = () => {
-    return (
-        <div>
-            <div className="ma-post-info-container" style={{ height: '100%', width: '100%' }}>
-                <iframe
-                    src="/approval.html"
-                    title="文章审核页面"
-                    style={{
-                        border: 'none',
-                        width: '100%',
-                        height: '90vh',
-                    }}
-                    scrolling="no"
-                />
-            </div>
-        </div>
-    )
-};
-export default MaPost;*/
 import { useEffect, useState } from "react";
 import "./MaPost.css";
-
-interface Article {
-    postId: string;
-    title: string;
-    tag: string;
-    postTime: string;
-    otherInfoDto: {
-        userInfoDto: {
-            name: string;
-        };
-    };
-}
+import {approvalPost, getApprovalList, PostItem} from "../../../api/feature/forum.ts";
+import {useToast} from "../../provider/ToastContext.tsx";
 
 const MaPost = () => {
-    const [articles, setArticles] = useState<Article[]>([]);
+    const [articles, setArticles] = useState<PostItem[]>([]);
     const [pageNum, setPageNum] = useState(1);
-    const pageSize = 8;
+    const pageSize = 10;
     const [isLoading, setIsLoading] = useState(false);
     const [disablePrev, setDisablePrev] = useState(true);
     const [disableNext, setDisableNext] = useState(false);
-
+    const {showToast}=useToast();
     useEffect(() => {
         getArticles(pageNum);
     }, [pageNum]);
@@ -61,52 +30,25 @@ const MaPost = () => {
         const seconds = String(date.getSeconds()).padStart(2, "0");
         return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     };
-
-    const getArticles = (page: number) => {
+    const getArticles = async (page: number) => {
         setIsLoading(true);
-        // TODO: 替换成你自己的接口调用逻辑
-        // 模拟 fetch 调用
-        /*
-        fetch(articleInfo, {
-          method: 'POST',
-          headers: { 'Authorization': authorization },
-          body: formData
-        })
-        */
-        // 这里模拟接口返回，调用后用 setArticles 更新
-        // 失败时调用 handleAlert
-
-        // 示例假数据（你替换成接口结果）
-        // 这里只是示例，后续自己改
-        setTimeout(() => {
-            const fakeData: Article[] = [
-                {
-                    postId: "1",
-                    title: "示例文章标题1",
-                    tag: "标签1|标签2",
-                    postTime: new Date().toISOString(),
-                    otherInfoDto: { userInfoDto: { name: "用户A" } },
-                },
-                {
-                    postId: "2",
-                    title: "示例文章标题2",
-                    tag: "标签3",
-                    postTime: new Date().toISOString(),
-                    otherInfoDto: { userInfoDto: { name: "用户B" } },
-                },
-            ];
-            setArticles(fakeData);
-            setDisablePrev(page === 1);
-            setDisableNext(fakeData.length < pageSize);
-            setIsLoading(false);
-        }, 500);
+        const data = await getApprovalList(pageNum.toString(), pageSize.toString());
+        if(!data.success){
+            showToast(typeof data.message === "string" ? data.message :"获取失败",'error');
+            return;
+        }
+        setArticles(data.data);
+        setDisablePrev(page === 1);
+        setDisableNext(data.data.length < pageSize);
+        setIsLoading(false);
     };
 
-    const approveArticle = (postId: string, status: number) => {
-        // TODO: 调用审核接口 approve 逻辑
-        // 调用成功后刷新当前页
-        // 调用失败调用 handleAlert
-        alert(`调用approveArticle接口: postId=${postId} status=${status}`);
+    const approveArticle = async (postId: string, status: number) => {
+        const data = await approvalPost(postId, status.toString());
+        if(data.success){
+            showToast(data.data,"info");
+            getArticles(pageNum);
+        }
     };
 
     return (
@@ -134,7 +76,7 @@ const MaPost = () => {
                             <td>{(pageNum - 1) * pageSize + index + 1}</td>
                             <td>{article.otherInfoDto.userInfoDto.name}</td>
                             <td>
-                                <a href={`detail.html?postId=${article.postId}`}>
+                                <a href={`/manager/approval/${article.postId}`}>
                                     {article.title}
                                 </a>
                             </td>
@@ -190,6 +132,4 @@ const MaPost = () => {
         </div>
     );
 };
-
 export default MaPost;
-

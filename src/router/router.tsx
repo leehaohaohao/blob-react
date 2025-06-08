@@ -18,6 +18,7 @@ import MaGroupInfo from "../component/manager/group/MaGroupInfo.tsx";
 import MaWebInfo from "../component/manager/info/MaWebInfo.tsx";
 import MaFeedback from "../component/manager/feedback/MaFeedback.tsx";
 import MLogin from "../component/auth/MLogin.tsx";
+import MaApprovalPost from "../component/manager/post/MaApprovalPost.tsx";
 
 const router = createBrowserRouter([
     {
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
             {
                 path:'post',
                 element: <MaPost/>
+            },
+            {
+                path:'approval/:postId',
+                element: <MaApprovalPost/>
             },
             {
                 path:'group',

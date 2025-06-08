@@ -1,0 +1,291 @@
+.ma-approval-post-wrapper {
+    margin-left: 10vw;
+}
+
+.ma-approval-post-detail-author {
+    position: fixed;
+    top: 90px;
+    left: 15vw;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #e0f7fa;
+    padding: 12px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 124, 145, 0.2);
+    user-select: none;
+    z-index: 1000;
+}
+
+/* 点赞收藏竖排 */
+.ma-approval-post-interact {
+    margin-top: 16px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px; /* 竖直间距 */
+    align-items: center;
+}
+
+.ma-approval-interact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 600;
+    color: #007c91;
+}
+
+.ma-approval-interact-item .icon {
+    width: 36px;
+    height: 36px;
+    transition: transform 0.2s ease;
+    margin-bottom: 4px;
+    fill: #007c91;
+}
+
+.ma-approval-like-icon.liked {
+    fill: #E5404F;
+}
+
+.ma-approval-favorite-icon.favorited {
+    fill: #FEB432;
+}
+
+.ma-approval-interact-item:hover .icon {
+    transform: scale(1.2);
+}
+
+.ma-approval-count {
+    font-size: 14px;
+    min-width: 24px;
+    text-align: center;
+    color: #007c91;
+}
+
+.ma-approval-post-detail-author .ma-approval-author-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 10px rgba(0, 124, 145, 0.3);
+}
+
+.ma-approval-post-detail-author .ma-approval-author-name {
+    font-weight: 700;
+    color: #0d3b66;
+    font-size: 18px;
+    text-align: center;
+}
+
+.ma-approval-post-detail-container {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 25px;
+    box-shadow: 0 8px 24px rgba(0, 112, 144, 0.15);
+    margin: 10px;
+    width: 60vw;
+    min-height: 500px;
+    color: #0d3b66;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: box-shadow 0.3s ease;
+}
+
+.ma-approval-post-comment-container {
+    position: fixed;
+    top: 90px;
+    right: 5px;
+    height: 80vh;
+    overflow:hidden;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 25px;
+    box-shadow: 0 8px 24px rgba(0, 112, 144, 0.15);
+    padding: 16px;
+    color: #0d3b66;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: box-shadow 0.3s ease;
+    z-index: 999;
+}
+
+.ma-approval-post-comment-container:hover {
+    box-shadow: 0 12px 30px rgba(0, 112, 144, 0.3);
+}
+
+.ma-approval-post-detail-container:hover {
+    box-shadow: 0 12px 30px rgba(0, 112, 144, 0.3);
+}
+
+.ma-approval-post-detail-container {
+    width: 65%;
+}
+
+.ma-approval-post-comment-container {
+    width: 22%;
+}
+
+/* 标题和时间部分 */
+.ma-approval-post-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 28px;
+    font-weight: 600;
+    color: #0d3b66;
+    padding: 20px 24px;
+    border-bottom: 2px solid #d0e8f2;
+    border-radius: 25px 25px 0 0;
+    background: linear-gradient(90deg, #e0f7fa, #ccf2f4);
+    box-shadow: 0 4px 10px rgba(0, 128, 128, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.ma-approval-post-detail-header:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(90deg, #d0f0f8, #bdeff2);
+    box-shadow: 0 6px 14px rgba(0, 128, 128, 0.2);
+}
+
+.ma-approval-post-title-text {
+    flex: 1; /* 占据剩余空间 */
+    margin-right: 20px; /* 给时间留空间 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ma-approval-post-detail-time {
+    flex-shrink: 0;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 500;
+    color: #007c91;
+    letter-spacing: 1.2px;
+    padding: 6px 16px;
+    border-radius: 15px;
+    background: linear-gradient(90deg, #d0f0f8, #a6d8e7);
+    box-shadow: 0 0 10px rgba(0, 124, 145, 0.4);
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    transition: box-shadow 0.6s ease-in-out;
+}
+
+/* 呼吸光晕动画 */
+.ma-approval-post-detail-time::before {
+    content: '';
+    position: absolute;
+    top: -6px; left: -6px; right: -6px; bottom: -6px;
+    border-radius: 20px;
+    background: linear-gradient(270deg, #00aabb, #007c91, #00aabb);
+    animation: pulseGlow 3s ease-in-out infinite;
+    filter: blur(6px);
+    opacity: 0.7;
+    z-index: -1;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        opacity: 0.7;
+        filter: blur(6px);
+    }
+    50% {
+        opacity: 0.3;
+        filter: blur(12px);
+    }
+}
+
+.ma-approval-post-detail-tagContainer {
+    display: flex;
+    gap: 12px;
+    padding: 12px 24px;
+    background: rgba(224, 247, 250, 0.5);
+    border-top: 1px solid rgba(28, 104, 128, 0.15);
+}
+
+.ma-approval-post-detail-tag {
+    padding: 6px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #005e70;
+    background: rgba(204, 242, 244, 0.7);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 6px rgba(0, 124, 145, 0.25);
+}
+
+.ma-approval-post-detail-tag:hover {
+    background: rgba(178, 228, 235, 0.9);
+    color: #003844;
+    box-shadow: 0 6px 15px rgba(0, 124, 145, 0.45);
+    transform: translateY(-2px);
+}
+
+.ma-approval-post-content {
+    padding: 20px 24px;
+    height: auto;
+    min-height: 200px;
+    color: #134e6f;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-wrap: break-word;
+}
+
+.ma-approval-post-content p {
+    line-height: 1.6;
+    font-size: 16px;
+    color: #134e6f;
+}
+
+.ma-approval-approval-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 112, 144, 0.25);
+}
+
+.ma-approval-post-approval-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 32px 0;
+}
+
+.ma-approval-approve-button, .ma-approval-reject-button {
+    padding: 12px 36px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.ma-approval-approve-button {
+    background-color: #4caf50;
+    color: white;
+}
+
+.ma-approval-reject-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.ma-approval-approve-button:hover {
+    background-color: #45a049;
+}
+
+.ma-approval-reject-button:hover {
+    background-color: #d32f2f;
+}
