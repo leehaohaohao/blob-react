@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { getTagPostList, PostItem } from "../../api/feature/forum.ts";
 import ArticleCard from "./ArticleCard.tsx";
 import './ArticleList.css'
+import {useToast} from "../provider/ToastContext.tsx";
 
 interface ArticleListProps {
     currentTag: string|null;
@@ -16,7 +17,7 @@ const COLUMN_COUNT = 5;
 
 const ArticleList: React.FC<ArticleListProps> = ({ currentTag }) => {
     const [postList, setPostList] = useState<PostItem[]>([]);
-
+    const {showToast} = useToast();
     useEffect(() => {
         let isMounted = true;
         const abortController = new AbortController();
@@ -30,7 +31,13 @@ const ArticleList: React.FC<ArticleListProps> = ({ currentTag }) => {
                     { signal: abortController.signal }
                 );
                 if (isMounted) {
-                    setPostList(res.data.list);
+                    if(res.success){
+                        setPostList(res.data.list);
+                        if(res.data.list.length === 0){
+                            showToast("没有找到相关文章",  "info");
+                        }
+                    }
+
                 }
             } catch (error) {
                 if (!abortController.signal.aborted) {

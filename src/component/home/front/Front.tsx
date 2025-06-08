@@ -37,8 +37,11 @@ const Front = ()=>{
         const userLike = async()=>{
             try{
                 const data = await getUserLikeOrCollect('1','5','0');
-                //console.log(data);
-                setCoverUserLike(data.data);
+                if(data.success){
+                    setCoverUserLike(data.data);
+                }else{
+                    showToast(typeof data.message === "string" ? data.message :"服务器异常，请联系管理员！",'error');
+                }
             }catch (e){
                 return e;
             }
@@ -47,8 +50,11 @@ const Front = ()=>{
         const userCollect = async()=>{
             try{
                 const data = await getUserLikeOrCollect('1','5','1');
-                //console.log(data);
-                setCoverUserCollect(data.data);
+                if(data.success){
+                    setCoverUserCollect(data.data);
+                }else{
+                    showToast(typeof data.message === "string" ? data.message :"服务器异常，请联系管理员！",'error');
+                }
             }catch (e){
                 return e;
             }
@@ -60,7 +66,6 @@ const Front = ()=>{
         if (user?.selfTag && tagsList.length === 0) {
             const tag = user.selfTag.split('|');
             setTagsList(tag);
-            console.log(tag);
         }
     }, [user]);
     const updateTag = async()=>{
@@ -73,12 +78,11 @@ const Front = ()=>{
                 showToast(typeof data.message === "string" ? data.message :'error');
             }
         }catch (e){
-            console.log(e,"更新标签失败");
+            console.error(e,"更新标签失败");
         }
     }
-    // 添加空标签（最多5个）
     const addTag = (e: React.MouseEvent) => {
-        e.preventDefault(); // 阻止表单默认提交
+        e.preventDefault();
         if (tagsList.length >= 5){
             showToast('最多添加5个标签','error');
             return;
