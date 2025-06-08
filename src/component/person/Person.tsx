@@ -3,7 +3,6 @@
  * @author lihao
  * @date 2025/6/4
  */
-
 import './Person.css';
 import React, { useEffect, useState } from 'react';
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
